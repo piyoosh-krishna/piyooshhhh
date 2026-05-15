@@ -8,7 +8,7 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue } from "moti
 import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
-import ShinyText from "./ShinyText";
+import WaterText from "./WaterText";
 
 export function SectionHeader({ title, subtitle, number }: { title: string, subtitle?: string, number: string }) {
   const containerRef = useRef(null);
@@ -168,30 +168,8 @@ export function Hero() {
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto"
                   >
-                    <div className="flex flex-wrap justify-center lg:justify-start">
-                      {"Piyoosh".split("").map((char, i) => (
-                        <ShinyText 
-                          key={i} 
-                          text={char} 
-                          speed={2} 
-                          initialOffset={i * 0.1}
-                          color="var(--text-main)" 
-                          shineColor="var(--accent)" 
-                        />
-                      ))}
-                    </div>
-                    <div className="flex flex-wrap justify-center lg:justify-start">
-                      {"Krishna M".split("").map((char, i) => (
-                        <ShinyText 
-                          key={i} 
-                          text={char === " " ? "\u00A0" : char} 
-                          speed={2} 
-                          initialOffset={(i + 7) * 0.1}
-                          color="var(--text-main)" 
-                          shineColor="var(--accent)" 
-                        />
-                      ))}
-                    </div>
+                    <WaterText text="Piyoosh" className="block" />
+                    <WaterText text="Krishna M" className="block" />
                   </motion.h1>
                 </div>
               </div>
