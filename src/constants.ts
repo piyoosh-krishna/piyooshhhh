@@ -5,7 +5,7 @@
 
 export const RESUME_DATA = {
   name: "PIYOOSH KRISHNA M",
-  role: "Aspiring AI Engineer",
+  role: "Aspiring AI Enthusiast",
   specialization: "BCA – Artificial Intelligence & DevOps Student",
   location: "Kozhikode, Kerala, India",
   email: "piyooshkrishnamnair@gmail.com",
