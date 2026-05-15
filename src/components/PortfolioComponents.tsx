@@ -18,21 +18,11 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
 
   const width = useTransform(scrollYProgress, [0.2, 0.5], ["0%", "100%"]);
   const opacityLine = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
-  const bgY = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const textX = useTransform(scrollYProgress, [0.2, 0.5], [-50, 0]);
 
   return (
-    <div ref={containerRef} className="mb-12 md:mb-32 relative">
-      {/* Background Stroke Text Parallax */}
-      <motion.div 
-        style={{ y: bgY }}
-        className="absolute -top-16 -left-4 md:-top-32 md:-left-8 pointer-events-none opacity-[0.05] z-0 whitespace-nowrap"
-      >
-        <span className="text-7xl md:text-[14vw] font-display font-bold uppercase tracking-tighter leading-none" style={{ WebkitTextStroke: "1px var(--text-main)", color: "transparent" }}>
-          {title}
-        </span>
-      </motion.div>
-
-      <div className="flex flex-col gap-4 relative z-10">
+    <div ref={containerRef} className="mb-12 md:mb-32 overflow-hidden">
+      <div className="flex flex-col gap-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -113,7 +103,7 @@ export function Hero() {
         className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0"
       >
         <h1 className="text-[18vw] md:text-[20vw] font-display font-bold leading-[0.8] tracking-tighter select-none text-center" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
-          ARTIFICIAL<br />INTELLIGENCE
+          HELLO;
         </h1>
       </motion.div>
 
@@ -171,15 +161,44 @@ export function Hero() {
                 </motion.div>
 
                 <div className="space-y-1">
-                  <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto"
-                  >
-                    Piyoosh <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-main)] to-gray-500">Krishna M</span>
-                  </motion.h1>
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto overflow-hidden">
+                    <div className="flex flex-wrap">
+                      {"Piyoosh".split("").map((char, i) => (
+                        <motion.span
+                          key={i}
+                          initial={{ y: "100%", opacity: 0, filter: "blur(10px)" }}
+                          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                          transition={{ 
+                            duration: 0.8, 
+                            delay: 0.2 + i * 0.05,
+                            ease: [0.16, 1, 0.3, 1]
+                          }}
+                          className="inline-block"
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </div>
+                    <div className="flex flex-wrap">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-main)] to-gray-500 flex flex-wrap">
+                        {"Krishna M".split("").map((char, i) => (
+                          <motion.span
+                            key={i}
+                            initial={{ y: "100%", opacity: 0, filter: "blur(10px)" }}
+                            animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                            transition={{ 
+                              duration: 0.8, 
+                              delay: 0.6 + i * 0.05,
+                              ease: [0.16, 1, 0.3, 1]
+                            }}
+                            className="inline-block"
+                          >
+                            {char === " " ? "\u00A0" : char}
+                          </motion.span>
+                        ))}
+                      </span>
+                    </div>
+                  </h1>
                 </div>
               </div>
 
