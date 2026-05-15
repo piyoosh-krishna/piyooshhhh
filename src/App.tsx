@@ -394,7 +394,7 @@ export default function App() {
             </div>
           </div>
         </section>
-      </main>
+      </motion.main>
 
       <footer className="py-24 px-6 md:px-12 border-t border-[var(--glass-border)]">
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-12">
