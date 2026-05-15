@@ -29,7 +29,7 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
           viewport={{ once: true }}
           className="flex items-center gap-4"
         >
-          <span className="font-mono text-brand-accent text-xs tracking-[0.4em] mb-2">{number} // MODULE</span>
+          <span className="font-mono text-brand-accent text-xs tracking-[0.4em] mb-2">{number} // SECTION</span>
         </motion.div>
         
         <div className="relative group">
@@ -206,7 +206,7 @@ export function Hero() {
                   href="#contact" 
                   className="px-6 py-3 bg-brand-accent text-white font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto text-center"
                 >
-                  Initiate_Sequence
+                  Get In Touch
                 </motion.a>
                 <motion.a 
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
@@ -215,7 +215,7 @@ export function Hero() {
                   download
                   className="px-6 py-3 border border-white/10 text-white font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto flex items-center justify-center gap-2 hover:border-brand-accent"
                 >
-                  Extract_Data
+                  Download CV
                   <Download size={14} />
                 </motion.a>
               </div>
@@ -230,7 +230,7 @@ export function Hero() {
               <div className="space-y-4">
                 <div className="flex flex-col gap-1">
                   <span className="text-brand-accent/60 uppercase tracking-widest text-[8px] flex items-center gap-2">
-                    <Binary size={10} /> Class
+                    <Binary size={10} /> Role
                   </span>
                   <span className="text-[var(--text-main)] uppercase tracking-wider text-xs line-clamp-1" title={RESUME_DATA.role}>{RESUME_DATA.role}</span>
                 </div>
@@ -244,9 +244,9 @@ export function Hero() {
                 <div className="h-px w-full bg-gradient-to-r from-brand-accent/50 to-transparent" />
                 <div className="flex flex-col gap-1">
                   <span className="text-brand-accent/60 uppercase tracking-widest text-[8px] flex items-center gap-2">
-                    <Cpu size={10} /> Core_Modules
+                    <Cpu size={10} /> Focus
                   </span>
-                  <span className="text-[var(--text-main)] uppercase tracking-wider text-xs line-clamp-1">AI_ENGINE / DEVOPS_NET</span>
+                  <span className="text-[var(--text-main)] uppercase tracking-wider text-xs line-clamp-1">AI & DEVOPS</span>
                 </div>
               </div>
 
@@ -316,7 +316,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
       <div className="flex items-center gap-4 text-[10px] font-mono tracking-widest text-brand-accent uppercase">
         <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-        Source_Available
+        Live Project
       </div>
     </motion.div>
   );

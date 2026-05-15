@@ -137,8 +137,8 @@ export default function App() {
         <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="01"
-            title="Entity"
-            subtitle="Architecting neural interfaces between human logic and machine execution."
+            title="About Me"
+            subtitle="I build efficient, scalable AI and DevOps solutions."
           />
           <div className="grid md:grid-cols-2 gap-24 items-start">
             <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
@@ -162,14 +162,14 @@ export default function App() {
                 className="glass p-12 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-2 h-full bg-brand-accent/20" />
-                <p className="text-[10px] font-mono text-brand-accent uppercase tracking-widest mb-10">Module: Education</p>
+                <p className="text-[10px] font-mono text-brand-accent uppercase tracking-widest mb-10">Education</p>
                 {RESUME_DATA.education.map((edu, i) => (
                   <div key={i}>
                     <h4 className="text-2xl font-bold font-display uppercase tracking-tight mb-2">{edu.degree}</h4>
                     <p className="text-[var(--text-dim)] text-lg uppercase font-light">{edu.institution}</p>
                     <div className="flex justify-between items-end mt-12 pt-8 border-t border-[var(--glass-border)]">
                       <span className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-widest">{edu.period}</span>
-                      <span className="text-[10px] font-mono text-brand-accent tracking-widest">GPA_VAL: {edu.cgpa}</span>
+                      <span className="text-[10px] font-mono text-brand-accent tracking-widest">GPA: {edu.cgpa}</span>
                     </div>
                   </div>
                 ))}
@@ -182,8 +182,8 @@ export default function App() {
         <section id="projects" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="02"
-            title="Artifacts"
-            subtitle="Compiled intelligence modules and data flow processors."
+            title="Projects"
+            subtitle="A collection of my recent technical work and contributions."
           />
           <div className="grid md:grid-cols-2 gap-12">
             {RESUME_DATA.projects.map((project, i) => (
@@ -196,16 +196,16 @@ export default function App() {
         <section id="skills" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="03"
-            title="Sub_Systems"
-            subtitle="Core technological capabilities and specialized frameworks."
+            title="Skills"
+            subtitle="Proficiency in various technologies and frameworks."
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <SkillCategory title="Logic_Engines" skills={RESUME_DATA.skills.programming} icon={Binary} />
-            <SkillCategory title="Neural_Nets" skills={RESUME_DATA.skills.ai_ml} icon={Cpu} />
-            <SkillCategory title="Data_Flows" skills={RESUME_DATA.skills.data_libraries} icon={Database} />
-            <SkillCategory title="Storage" skills={RESUME_DATA.skills.databases} icon={Layout} />
-            <SkillCategory title="Runtime" skills={RESUME_DATA.skills.fundamentals} icon={Binary} />
-            <SkillCategory title="Orchestrators" skills={RESUME_DATA.skills.tools} icon={Binary} />
+            <SkillCategory title="Programming" skills={RESUME_DATA.skills.programming} icon={Binary} />
+            <SkillCategory title="AI & ML" skills={RESUME_DATA.skills.ai_ml} icon={Cpu} />
+            <SkillCategory title="Data Science" skills={RESUME_DATA.skills.data_libraries} icon={Database} />
+            <SkillCategory title="Databases" skills={RESUME_DATA.skills.databases} icon={Layout} />
+            <SkillCategory title="Web Dev" skills={RESUME_DATA.skills.fundamentals} icon={Binary} />
+            <SkillCategory title="DevOps & Tools" skills={RESUME_DATA.skills.tools} icon={Binary} />
           </div>
         </section>
 
@@ -213,7 +213,7 @@ export default function App() {
         <section id="certifications" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="04"
-            title="Authorizations"
+            title="Certifications"
             subtitle="Verified credentials and technical achievements."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -248,8 +248,8 @@ export default function App() {
         <section id="experience" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="05"
-            title="Chronology"
-            subtitle="The temporal sequence of professional evolution."
+            title="Experience"
+            subtitle="My professional journey and career milestones."
           />
           <ExperienceSection />
         </section>
@@ -279,7 +279,7 @@ export default function App() {
                 viewport={{ once: true }}
                 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter mb-12"
               >
-                Let's <span className="text-brand-accent">Sync</span>
+                Let's <span className="text-brand-accent">Connect</span>
               </motion.h2>
 
               <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -289,7 +289,7 @@ export default function App() {
                   href={`mailto:${RESUME_DATA.email}`}
                   className="px-12 py-6 bg-brand-accent text-white font-display font-bold uppercase tracking-widest flex items-center gap-4 group rounded-2xl"
                 >
-                  Encrypt_Message
+                  Send Message
                   <Send size={24} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
                 </motion.a>
 
@@ -311,11 +311,11 @@ export default function App() {
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="space-y-4">
             <p className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-widest">
-              © 2026 P_KRISHNA_M // ALL_RIGHTS_RESERVED
+              © 2026 Piyoosh Krishna M // All Rights Reserved
             </p>
             <p className="text-[10px] font-mono text-brand-accent uppercase tracking-widest flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-              Pulse_Ok
+              Online
             </p>
           </div>
           <div className="flex flex-wrap gap-12 text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-widest justify-center">
