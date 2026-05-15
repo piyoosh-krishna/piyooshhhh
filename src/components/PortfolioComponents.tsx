@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue } from "moti
 import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
+import ShinyText from "./ShinyText";
 
 export function SectionHeader({ title, subtitle, number }: { title: string, subtitle?: string, number: string }) {
   const containerRef = useRef(null);
@@ -165,12 +166,22 @@ export function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto group/name"
+                    className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto"
                   >
-                    <span className="glaze-text overflow-hidden">
-                      Piyoosh <br />
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-main)] to-gray-500">Krishna M</span>
-                    </span>
+                    <ShinyText 
+                      text="Piyoosh" 
+                      speed={3} 
+                      color="var(--text-main)" 
+                      shineColor="var(--accent)" 
+                      className="block"
+                    />
+                    <ShinyText 
+                      text="Krishna M" 
+                      speed={3} 
+                      color="var(--text-main)" 
+                      shineColor="var(--accent)" 
+                      className="block"
+                    />
                   </motion.h1>
                 </div>
               </div>

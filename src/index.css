@@ -116,32 +116,3 @@ body {
   animation: scanline 8s linear infinite;
   pointer-events: none;
 }
-
-.glaze-text {
-  position: relative;
-  display: block;
-  overflow: hidden;
-}
-
-.glaze-text::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -150%;
-  width: 100%;
-  height: 200%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-  );
-  transform: rotate(25deg);
-  transition: 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-  pointer-events: none;
-  z-index: 50;
-}
-
-.glaze-text:hover::before {
-  left: 150%;
-}
