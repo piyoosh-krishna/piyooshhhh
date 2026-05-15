@@ -209,11 +209,11 @@ export function Hero() {
                   Get In Touch
                 </motion.a>
                 <motion.a 
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                  whileHover={{ scale: 1.05, backgroundColor: "var(--glass-border)" }}
                   whileTap={{ scale: 0.95 }}
                   href={RESUME_DATA.links.cv} 
                   download
-                  className="px-6 py-3 border border-white/10 text-white font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto flex items-center justify-center gap-2 hover:border-brand-accent"
+                  className="px-6 py-3 border border-[var(--glass-border)] text-[var(--text-main)] font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto flex items-center justify-center gap-2 hover:border-brand-accent"
                 >
                   Download CV
                   <Download size={14} />
@@ -246,7 +246,7 @@ export function Hero() {
                   <span className="text-brand-accent/60 uppercase tracking-widest text-[8px] flex items-center gap-2">
                     <Cpu size={10} /> Focus
                   </span>
-                  <span className="text-[var(--text-main)] uppercase tracking-wider text-xs line-clamp-1">AI & DEVOPS</span>
+                  <span className="text-[var(--text-main)] uppercase tracking-wider text-xs line-clamp-1">AI & ML</span>
                 </div>
               </div>
 
