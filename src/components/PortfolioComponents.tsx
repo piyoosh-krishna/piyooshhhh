@@ -89,6 +89,9 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
+  const nameX = useSpring(useTransform(mouseX, [-1, 1], [-20, 20]), { stiffness: 100, damping: 30 });
+  const nameY = useSpring(useTransform(mouseY, [-1, 1], [-10, 10]), { stiffness: 100, damping: 30 });
+
   return (
     <section
       ref={containerRef}
@@ -164,6 +167,7 @@ export function Hero() {
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
+                    style={{ x: nameX, y: nameY }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-main)] via-[var(--accent)] to-[var(--secondary)] animate-gradient"
                   >
