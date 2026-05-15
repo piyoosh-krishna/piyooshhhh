@@ -174,7 +174,6 @@ export function Hero() {
                       color="var(--text-main)" 
                       shineColor="var(--accent)" 
                       className="block"
-                      cursorResponsive={true}
                     />
                     <ShinyText 
                       text="Krishna M" 
@@ -182,7 +181,6 @@ export function Hero() {
                       color="var(--text-main)" 
                       shineColor="var(--accent)" 
                       className="block"
-                      cursorResponsive={true}
                     />
                   </motion.h1>
                 </div>
