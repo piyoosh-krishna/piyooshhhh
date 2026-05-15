@@ -221,9 +221,10 @@ export default function App() {
 
             <div className="space-y-12">
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 50, rotateY: -10 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 className="glass p-12 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-2 h-full bg-brand-accent/20" />
@@ -339,9 +340,10 @@ export default function App() {
               </motion.div>
 
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.5, y: 100 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.2 }}
                 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter mb-12"
               >
                 Let's <span className="text-brand-accent">Connect</span>
