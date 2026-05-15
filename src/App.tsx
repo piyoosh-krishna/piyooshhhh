@@ -100,7 +100,7 @@ export default function App() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="font-display font-bold text-xl md:text-2xl uppercase tracking-tighter"
+          className="font-display font-bold text-xl md:text-2xl uppercase tracking-tighter mix-blend-difference text-white"
         >
           PIYOOSH_KRISHNA_M <span className="text-brand-accent font-light hidden sm:inline">// 0.1</span>
         </motion.div>
@@ -193,7 +193,7 @@ export default function App() {
                 enableBlur={true}
                 baseRotation={2}
                 blurStrength={10}
-                textClassName="text-xl md:text-3xl font-light leading-relaxed text-[var(--text-main)] font-display"
+                textClassName="text-xl md:text-3xl font-light leading-relaxed text-[var(--text-main)]"
               >
                 {RESUME_DATA.summary}
               </ScrollReveal>
