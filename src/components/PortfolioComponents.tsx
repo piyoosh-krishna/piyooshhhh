@@ -3,11 +3,65 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "motion/react";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "motion/react";
 import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
+
+const ScrambleIn = ({ text, delay = 0 }: { text: string; delay?: number }) => {
+  const [displayText, setDisplayText] = useState("");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    let intervalId: NodeJS.Timeout;
+
+    const startAnimation = () => {
+      let iteration = 0;
+      setIsAnimating(true);
+
+      intervalId = setInterval(() => {
+        setDisplayText(
+          text
+            .split("")
+            .map((char, index) => {
+              if (index < iteration) {
+                return text[index];
+              }
+              return characters[Math.floor(Math.random() * characters.length)];
+            })
+            .join("")
+        );
+
+        if (iteration >= text.length) {
+          clearInterval(intervalId);
+          setIsAnimating(false);
+        }
+
+        iteration += 1 / 3;
+      }, 30);
+    };
+
+    timeoutId = setTimeout(startAnimation, delay * 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(intervalId);
+    };
+  }, [text, delay]);
+
+  return (
+    <motion.span
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="inline-block"
+    >
+      {displayText || text.split("").map(() => characters[Math.floor(Math.random() * characters.length)]).join("")}
+    </motion.span>
+  );
+};
 
 export function SectionHeader({ title, subtitle, number }: { title: string, subtitle?: string, number: string }) {
   const containerRef = useRef(null);
@@ -161,44 +215,13 @@ export function Hero() {
                 </motion.div>
 
                 <div className="space-y-1">
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto overflow-hidden">
-                    <div className="flex flex-wrap">
-                      {"Piyoosh".split("").map((char, i) => (
-                        <motion.span
-                          key={i}
-                          initial={{ y: "100%", opacity: 0, filter: "blur(10px)" }}
-                          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                          transition={{ 
-                            duration: 0.8, 
-                            delay: 0.2 + i * 0.05,
-                            ease: [0.16, 1, 0.3, 1]
-                          }}
-                          className="inline-block"
-                        >
-                          {char}
-                        </motion.span>
-                      ))}
-                    </div>
-                    <div className="flex flex-wrap">
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-main)] to-gray-500 flex flex-wrap">
-                        {"Krishna M".split("").map((char, i) => (
-                          <motion.span
-                            key={i}
-                            initial={{ y: "100%", opacity: 0, filter: "blur(10px)" }}
-                            animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                            transition={{ 
-                              duration: 0.8, 
-                              delay: 0.6 + i * 0.05,
-                              ease: [0.16, 1, 0.3, 1]
-                            }}
-                            className="inline-block"
-                          >
-                            {char === " " ? "\u00A0" : char}
-                          </motion.span>
-                        ))}
-                      </span>
-                    </div>
-                  </h1>
+                  <div className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto">
+                    <ScrambleIn text="Piyoosh" delay={0.2} />
+                    <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-main)] to-gray-500">
+                      <ScrambleIn text="Krishna M" delay={0.6} />
+                    </span>
+                  </div>
                 </div>
               </div>
 
