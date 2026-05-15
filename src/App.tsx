@@ -256,20 +256,6 @@ export default function App() {
                 ))}
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="glass p-8 border-brand-accent/5 bg-brand-accent/[0.02]"
-              >
-                <p className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-widest mb-4">Core_Focus</p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-[10px] px-3 py-1 glass border-brand-accent/20 text-brand-accent uppercase font-mono">Neural_Nets</span>
-                  <span className="text-[10px] px-3 py-1 glass border-brand-accent/20 text-brand-accent uppercase font-mono">DevOps_Pipelines</span>
-                  <span className="text-[10px] px-3 py-1 glass border-brand-accent/20 text-brand-accent uppercase font-mono">Data_Forensics</span>
-                </div>
-              </motion.div>
             </div>
           </div>
         </section>
