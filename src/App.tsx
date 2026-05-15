@@ -193,7 +193,7 @@ export default function App() {
                 enableBlur={true}
                 baseRotation={2}
                 blurStrength={10}
-                textClassName="text-xl md:text-3xl font-light leading-relaxed text-[var(--text-main)]"
+                textClassName="text-xl md:text-3xl font-light leading-relaxed text-[var(--text-main)] font-display"
               >
                 {RESUME_DATA.summary}
               </ScrollReveal>
