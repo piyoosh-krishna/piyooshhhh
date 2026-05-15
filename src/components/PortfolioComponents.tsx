@@ -23,7 +23,7 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
   return (
     <div ref={containerRef} className="mb-12 md:mb-32 overflow-hidden">
       <div className="flex flex-col gap-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -31,9 +31,9 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
         >
           <span className="font-mono text-brand-accent text-xs tracking-[0.4em] mb-2">{number} // SECTION</span>
         </motion.div>
-        
+
         <div className="relative group">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -41,14 +41,14 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
           >
             {title}
           </motion.h2>
-          <motion.div 
+          <motion.div
             style={{ width, opacity: opacityLine }}
             className="h-[2px] bg-brand-accent mt-4 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
           />
         </div>
 
         {subtitle && (
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.5 }}
             viewport={{ once: true }}
@@ -90,24 +90,24 @@ export function Hero() {
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
   return (
-    <section 
-      ref={containerRef} 
+    <section
+      ref={containerRef}
       onMouseMove={handleMouseMove}
       className="h-[100dvh] w-full flex flex-col justify-center items-center px-4 md:px-8 relative perspective-[2000px] overflow-hidden"
     >
       <div className="scanline" />
-      
+
       {/* Background massive stroke text */}
-      <motion.div 
+      <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0"
       >
-        <h1 className="text-[18vw] font-display font-bold leading-none tracking-tighter whitespace-nowrap select-none" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
-          AI_ENGINEER
+        <h1 className="text-[12vw] md:text-[11vw] font-display font-bold leading-none tracking-tighter whitespace-nowrap select-none" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
+          ARTIFICIAL INTELLIGENCE
         </h1>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         style={{ y, opacity, rotateX, rotateY }}
         className="w-full max-w-6xl z-30 relative transform-gpu pt-16 md:pt-0"
       >
@@ -120,7 +120,7 @@ export function Hero() {
           <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-16 relative z-10">
             <div className="space-y-4 md:space-y-6 flex-1">
 
-              
+
               <div className="flex flex-col sm:flex-row gap-6 sm:items-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
@@ -132,7 +132,7 @@ export function Hero() {
                   <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
                     {/* Circle Background & Glow */}
                     <div className="absolute inset-0 bg-brand-accent/10 rounded-full blur-2xl opacity-20 group-hover:opacity-50 transition-opacity duration-500" />
-                    
+
                     {/* The Background Circle */}
                     <div className="absolute inset-0 rounded-full border border-brand-accent/30 bg-gradient-to-b from-brand-accent/5 to-transparent z-0 group-hover:border-brand-accent transition-all duration-500" />
 
@@ -151,9 +151,9 @@ export function Hero() {
                         src="/hero.png"
                         alt=""
                         className="w-full h-full object-cover scale-[1.35] object-top translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700 opacity-0 group-hover:opacity-100"
-                        style={{ 
-                           maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)',
-                           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)' 
+                        style={{
+                          maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)',
+                          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)'
                         }}
                       />
                     </div>
@@ -173,13 +173,13 @@ export function Hero() {
                 </div>
               </div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 className="text-base md:text-xl font-light text-brand-accent font-mono h-8 flex items-center"
               >
-                <TextType 
+                <TextType
                   text={RESUME_DATA.specialization}
                   typingSpeed={50}
                   pauseDuration={3000}
@@ -200,18 +200,18 @@ export function Hero() {
               </motion.p>
 
               <div className="flex flex-row gap-3 pt-2">
-                <motion.a 
+                <motion.a
                   whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(59,130,246,0.4)" }}
                   whileTap={{ scale: 0.95 }}
-                  href="#contact" 
+                  href="#contact"
                   className="px-6 py-3 bg-brand-accent text-white font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto text-center"
                 >
                   Get In Touch
                 </motion.a>
-                <motion.a 
+                <motion.a
                   whileHover={{ scale: 1.05, backgroundColor: "var(--glass-border)" }}
                   whileTap={{ scale: 0.95 }}
-                  href={RESUME_DATA.links.cv} 
+                  href={RESUME_DATA.links.cv}
                   download
                   className="px-6 py-3 border border-[var(--glass-border)] text-[var(--text-main)] font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto flex items-center justify-center gap-2 hover:border-brand-accent"
                 >
@@ -221,11 +221,11 @@ export function Hero() {
               </div>
             </div>
 
-            <motion.div 
-               initial={{ opacity: 0, x: 20 }}
-               animate={{ opacity: 1, x: 0 }}
-               transition={{ delay: 0.8 }}
-               className="w-full lg:w-64 flex flex-col gap-4 font-mono text-[10px] text-[var(--text-dim)] p-6 rounded-2xl border border-brand-accent/20 bg-brand-accent/5 backdrop-blur-md shadow-2xl"
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8 }}
+              className="w-full lg:w-64 flex flex-col gap-4 font-mono text-[10px] text-[var(--text-dim)] p-6 rounded-2xl border border-brand-accent/20 bg-brand-accent/5 backdrop-blur-md shadow-2xl"
             >
               <div className="space-y-4">
                 <div className="flex flex-col gap-1">
@@ -276,18 +276,18 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       className="group glass border border-[var(--glass-border)] p-8 md:p-12 transition-all hover:bg-white/[0.03] hover:border-brand-accent/30 relative overflow-hidden"
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full group-hover:bg-brand-accent/20 transition-all" />
-      
+
       <div className="flex justify-between items-start mb-8">
-        <motion.div 
+        <motion.div
           whileHover={{ rotate: 360, scale: 1.2 }}
           transition={{ duration: 1 }}
           className="p-3 bg-brand-accent/10 border border-brand-accent/20 rounded-2xl text-brand-accent"
         >
           <Binary size={24} />
         </motion.div>
-        <a 
-          href={project.link} 
-          target="_blank" 
+        <a
+          href={project.link}
+          target="_blank"
           className="p-2 text-gray-500 hover:text-brand-accent transition-colors translate-x-4 -translate-y-4 md:translate-x-0 md:translate-y-0"
         >
           <ExternalLink size={18} />
@@ -298,11 +298,11 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       <p className="text-[var(--text-dim)] text-lg mb-8 font-light leading-relaxed">
         {project.summary}
       </p>
-      
+
       <div className="space-y-4 mb-8">
         {project.highlights.map((h, i) => (
-          <motion.div 
-            key={i} 
+          <motion.div
+            key={i}
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 * i }}
@@ -326,7 +326,7 @@ export function ExperienceSection() {
   return (
     <div className="space-y-32">
       {RESUME_DATA.experience.map((exp, i) => (
-        <motion.div 
+        <motion.div
           key={i}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -345,7 +345,7 @@ export function ExperienceSection() {
             <h4 className="text-2xl font-display font-semibold mb-8 text-[var(--text-main)] underline decoration-brand-accent underline-offset-8 decoration-2">{exp.title}</h4>
             <ul className="space-y-6">
               {exp.highlights.map((h, j) => (
-                  <li key={j} className="text-xl text-[var(--text-dim)] font-light leading-relaxed group hover:text-[var(--accent)] transition-colors">
+                <li key={j} className="text-xl text-[var(--text-dim)] font-light leading-relaxed group hover:text-[var(--accent)] transition-colors">
                   {h}
                 </li>
               ))}
