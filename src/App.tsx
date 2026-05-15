@@ -12,9 +12,7 @@ import {
   SectionHeader,
   ProjectCard,
   ExperienceSection,
-  SkillCategory,
-  SectionWrapper,
-  GlitchReveal
+  SkillCategory
 } from "./components/PortfolioComponents";
 import ScrollReveal from "./components/ScrollReveal";
 import Antigravity from "./components/Antigravity";
@@ -201,52 +199,83 @@ export default function App() {
         <Hero />
 
         {/* About Section */}
-        <SectionWrapper id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full max-w-7xl mx-auto">
           <SectionHeader
             number="01"
             title="About Me"
             subtitle="I build efficient, scalable AI and DevOps solutions."
           />
-          <div className="grid md:grid-cols-2 gap-24 items-start">
-            <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
-              <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent/20" />
-              <ScrollReveal
-                baseOpacity={0}
-                enableBlur={true}
-                baseRotation={2}
-                blurStrength={10}
-                textClassName="text-xl md:text-3xl font-light leading-relaxed text-[var(--text-main)]"
-              >
-                {RESUME_DATA.summary}
-              </ScrollReveal>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+            {/* Main Content */}
+            <div className="lg:col-span-8 space-y-12">
+              <div className="relative p-1 md:p-2">
+                <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-brand-accent/30 -translate-x-4 -translate-y-4" />
+                <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-brand-accent/30 translate-x-4 translate-y-4" />
+                
+                <div className="glass p-8 md:p-16 relative overflow-hidden backdrop-blur-3xl bg-white/[0.02]">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-brand-accent via-brand-accent/20 to-transparent" />
+                  <ScrollReveal
+                    baseOpacity={0}
+                    enableBlur={true}
+                    baseRotation={2}
+                    blurStrength={10}
+                    textClassName="text-2xl md:text-4xl font-light leading-tight text-[var(--text-main)]"
+                  >
+                    {RESUME_DATA.summary}
+                  </ScrollReveal>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-12">
+            {/* Sidebar Details */}
+            <div className="lg:col-span-4 space-y-8">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 50, rotateY: -10 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
                 viewport={{ once: true }}
-                className="glass p-12 relative overflow-hidden"
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                className="glass p-8 relative overflow-hidden border-brand-accent/10"
               >
-                <div className="absolute top-0 right-0 w-2 h-full bg-brand-accent/20" />
-                <p className="text-[10px] font-mono text-brand-accent uppercase tracking-widest mb-10">Education</p>
+                <div className="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-brand-accent/40 to-transparent" />
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+                    <Binary size={16} />
+                  </div>
+                  <p className="text-[10px] font-mono text-brand-accent uppercase tracking-[0.3em]">Education_History</p>
+                </div>
+                
                 {RESUME_DATA.education.map((edu, i) => (
-                  <div key={i}>
-                    <h4 className="text-2xl font-bold font-display uppercase tracking-tight mb-2">{edu.degree}</h4>
-                    <p className="text-[var(--text-dim)] text-lg uppercase font-light">{edu.institution}</p>
-                    <div className="flex justify-between items-end mt-12 pt-8 border-t border-[var(--glass-border)]">
-                      <span className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-widest">{edu.period}</span>
-                      <span className="text-[10px] font-mono text-brand-accent tracking-widest">GPA: {edu.cgpa}</span>
+                  <div key={i} className="space-y-4">
+                    <h4 className="text-xl font-bold font-display uppercase tracking-tight leading-tight">{edu.degree}</h4>
+                    <p className="text-[var(--text-dim)] text-sm uppercase font-light tracking-wide">{edu.institution}</p>
+                    <div className="flex justify-between items-center mt-8 pt-6 border-t border-[var(--glass-border)]">
+                      <span className="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-widest">{edu.period}</span>
+                      <span className="px-3 py-1 bg-brand-accent/5 border border-brand-accent/20 rounded-full text-[9px] font-mono text-brand-accent tracking-widest">GPA: {edu.cgpa}</span>
                     </div>
                   </div>
                 ))}
               </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="glass p-8 border-brand-accent/5 bg-brand-accent/[0.02]"
+              >
+                <p className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-widest mb-4">Core_Focus</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-[10px] px-3 py-1 glass border-brand-accent/20 text-brand-accent uppercase font-mono">Neural_Nets</span>
+                  <span className="text-[10px] px-3 py-1 glass border-brand-accent/20 text-brand-accent uppercase font-mono">DevOps_Pipelines</span>
+                  <span className="text-[10px] px-3 py-1 glass border-brand-accent/20 text-brand-accent uppercase font-mono">Data_Forensics</span>
+                </div>
+              </motion.div>
             </div>
           </div>
-        </SectionWrapper>
+        </section>
 
         {/* Projects Section */}
-        <SectionWrapper id="projects" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <section id="projects" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="02"
             title="Projects"
@@ -257,10 +286,10 @@ export default function App() {
               <ProjectCard key={i} project={project} />
             ))}
           </div>
-        </SectionWrapper>
+        </section>
 
         {/* Skills Section */}
-        <SectionWrapper id="skills" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <section id="skills" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="03"
             title="Skills"
@@ -274,10 +303,10 @@ export default function App() {
             <SkillCategory title="Web Dev" skills={RESUME_DATA.skills.fundamentals} icon={Binary} />
             <SkillCategory title="DevOps & Tools" skills={RESUME_DATA.skills.tools} icon={Binary} />
           </div>
-        </SectionWrapper>
+        </section>
 
         {/* Certifications Section */}
-        <SectionWrapper id="certifications" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <section id="certifications" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="04"
             title="Certifications"
@@ -309,17 +338,17 @@ export default function App() {
               </motion.div>
             ))}
           </div>
-        </SectionWrapper>
+        </section>
 
         {/* Experience Section */}
-        <SectionWrapper id="experience" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <section id="experience" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="05"
             title="Experience"
             subtitle="My professional journey and career milestones."
           />
           <ExperienceSection />
-        </SectionWrapper>
+        </section>
 
         {/* Contact Section */}
         <section id="contact" className="py-32 md:py-64 px-6 md:px-12 w-full">
