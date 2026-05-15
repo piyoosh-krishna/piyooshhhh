@@ -109,7 +109,11 @@ const AntigravityInner = ({
     let destY = (m.y * v.height) / 2;
 
     const scrollVal = scrollYProgress ? scrollYProgress.get() : 0;
-    const isHeroActive = scrollVal < 0.05; // Consider Hero active if scroll is less than 5%
+    const isHeroActive = scrollVal < 0.05; 
+
+    // Dynamic scrubbing values based on scroll
+    const dynamicFieldStrength = fieldStrength + scrollVal * 20;
+    const dynamicRotation = rotationSpeed + scrollVal * 1.5;
 
     if (!interactive || !isHeroActive || (autoAnimate && Date.now() - lastMouseMoveTime.current > 2000)) {
       const time = state.clock.getElapsedTime();
@@ -124,7 +128,7 @@ const AntigravityInner = ({
     const targetX = virtualMouse.current.x;
     const targetY = virtualMouse.current.y;
 
-    const globalRotation = state.clock.getElapsedTime() * rotationSpeed;
+    const globalRotation = state.clock.getElapsedTime() * dynamicRotation;
 
     particles.forEach((particle, i) => {
       let { t, speed, mx, my, mz, cz, randomRadiusOffset } = particle;

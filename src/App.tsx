@@ -32,6 +32,11 @@ export default function App() {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   
+  // New scroll-driven animations
+  const skew = useTransform(scrollYProgress, [0, 1], [0, 0]); // Base skew
+  const scale = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 1, 0.95, 0.9]);
+  const mainY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -50]), { stiffness: 100, damping: 30 });
+
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
 
@@ -106,6 +111,20 @@ export default function App() {
 
       {/* Noise/Grain Overlay */}
       <div className="fixed inset-0 z-[90] pointer-events-none opacity-[0.03] contrast-150 brightness-100 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+      {/* Global Scroll Progress Line (Neural Link) */}
+      <div className="fixed left-4 md:left-8 top-0 bottom-0 w-[1px] bg-white/5 z-[200] hidden sm:block">
+        <motion.div 
+          style={{ height: scaleX }}
+          className="w-full bg-brand-accent shadow-[0_0_20px_rgba(59,130,246,0.8)]"
+        />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border border-brand-accent/20 flex items-center justify-center">
+          <div className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
+        </div>
+        <div className="absolute top-3/4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border border-brand-accent/20 flex items-center justify-center">
+          <div className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
+        </div>
+      </div>
 
       {/* Navigation */}
       <motion.nav 
@@ -194,7 +213,10 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <main className="relative z-10">
+      <motion.main 
+        style={{ scale, y: mainY }}
+        className="relative z-10"
+      >
         {/* Hero Section */}
         <Hero />
 
