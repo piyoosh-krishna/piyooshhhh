@@ -105,7 +105,7 @@ export function Hero() {
         style={{ y: bgY }}
         className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0"
       >
-        <h1 className="text-[18vw] md:text-[20vw] font-display font-bold leading-[0.8] tracking-tighter select-none text-center" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
+        <h1 className="text-[25vw] sm:text-[20vw] font-display font-bold leading-[0.8] tracking-tighter select-none text-center" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
           HELLO;
         </h1>
       </motion.div>
@@ -345,7 +345,7 @@ export function ExperienceSection() {
               <p className="text-xs text-brand-accent/60 uppercase tracking-widest">{exp.location}</p>
             </div>
           </div>
-          <div className="md:col-span-8 lg:col-span-9 border-l border-[var(--glass-border)] pl-12">
+          <div className="md:col-span-8 lg:col-span-9 border-l-0 md:border-l border-[var(--glass-border)] pl-0 md:pl-12 pt-8 md:pt-0">
             <h4 className="text-2xl font-display font-semibold mb-8 text-[var(--text-main)] underline decoration-brand-accent underline-offset-8 decoration-2">{exp.title}</h4>
             <ul className="space-y-6">
               {exp.highlights.map((h, j) => (

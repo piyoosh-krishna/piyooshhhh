@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "motion/react";
-import { Github, Linkedin, Mail, Send, Binary, Cpu, Database, Layout, X } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Binary, Cpu, Database, Layout, X, Menu } from "lucide-react";
 import { RESUME_DATA } from "./constants";
 import {
   Hero,
@@ -21,6 +21,7 @@ import ThemeToggle from "./components/ThemeToggle";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -99,11 +100,12 @@ export default function App() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="font-display font-bold text-2xl uppercase tracking-tighter"
+          className="font-display font-bold text-xl md:text-2xl uppercase tracking-tighter"
         >
-          PIYOOSH_KRISHNA_M <span className="text-brand-accent font-light">// 0.1</span>
+          PIYOOSH_KRISHNA_M <span className="text-brand-accent font-light hidden sm:inline">// 0.1</span>
         </motion.div>
 
+        {/* Desktop Links */}
         <div className="flex gap-8 lg:gap-12 items-center text-[10px] uppercase font-mono tracking-widest hidden md:flex">
           {[
             { name: "About", id: "about" },
@@ -127,7 +129,50 @@ export default function App() {
             </motion.a>
           ))}
         </div>
+
+        {/* Mobile Toggle */}
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-2 text-brand-accent glass !rounded-full"
+        >
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[250] bg-brand-bg/95 backdrop-blur-2xl flex flex-col justify-center px-12 gap-12"
+          >
+            {[
+              { name: "About", id: "about" },
+              { name: "Works", id: "projects" },
+              { name: "Arsenal", id: "skills" },
+              { name: "Certs", id: "certifications" },
+              { name: "History", id: "experience" },
+              { name: "Contact", id: "contact" }
+            ].map((item, i) => (
+              <motion.a
+                key={item.name}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                href={`#${item.id}`}
+                onClick={() => setIsMenuOpen(false)}
+                className="text-4xl font-display font-bold uppercase tracking-tighter text-[var(--text-main)]"
+              >
+                <span className="text-brand-accent mr-4 text-xs font-mono">0{i + 1}/</span>
+                {item.name}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <main className="relative z-10">
         {/* Hero Section */}
