@@ -3,65 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "motion/react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from "motion/react";
 import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
-
-const ScrambleIn = ({ text, delay = 0 }: { text: string; delay?: number }) => {
-  const [displayText, setDisplayText] = useState("");
-  const [isAnimating, setIsAnimating] = useState(false);
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    let intervalId: NodeJS.Timeout;
-
-    const startAnimation = () => {
-      let iteration = 0;
-      setIsAnimating(true);
-
-      intervalId = setInterval(() => {
-        setDisplayText(
-          text
-            .split("")
-            .map((char, index) => {
-              if (index < iteration) {
-                return text[index];
-              }
-              return characters[Math.floor(Math.random() * characters.length)];
-            })
-            .join("")
-        );
-
-        if (iteration >= text.length) {
-          clearInterval(intervalId);
-          setIsAnimating(false);
-        }
-
-        iteration += 1 / 3;
-      }, 30);
-    };
-
-    timeoutId = setTimeout(startAnimation, delay * 1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-      clearInterval(intervalId);
-    };
-  }, [text, delay]);
-
-  return (
-    <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="inline-block"
-    >
-      {displayText || text.split("").map(() => characters[Math.floor(Math.random() * characters.length)]).join("")}
-    </motion.span>
-  );
-};
 
 export function SectionHeader({ title, subtitle, number }: { title: string, subtitle?: string, number: string }) {
   const containerRef = useRef(null);
@@ -215,13 +161,17 @@ export function Hero() {
                 </motion.div>
 
                 <div className="space-y-1">
-                  <div className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto">
-                    <ScrambleIn text="Piyoosh" delay={0.2} />
-                    <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-main)] to-gray-500">
-                      <ScrambleIn text="Krishna M" delay={0.6} />
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto group/name"
+                  >
+                    <span className="glaze-text overflow-hidden">
+                      Piyoosh <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-main)] to-gray-500">Krishna M</span>
                     </span>
-                  </div>
+                  </motion.h1>
                 </div>
               </div>
 
