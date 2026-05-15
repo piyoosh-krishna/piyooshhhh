@@ -344,46 +344,51 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   );
 }
 
+const ExperienceRow = ({ exp, i }: { exp: any, i: number }) => {
+  const rowRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
+  return (
+    <motion.div
+      key={i}
+      ref={rowRef}
+      style={{ y }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="grid md:grid-cols-12 gap-12 glass p-10 relative overflow-hidden"
+    >
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full" />
+      <div className="md:col-span-4 lg:col-span-3 flex flex-col justify-center">
+        <div>
+          <p className="font-mono text-brand-accent text-sm mb-2">{exp.period}</p>
+          <h3 className="text-3xl font-bold font-display uppercase tracking-tight leading-none mb-4">{exp.company}</h3>
+          <p className="text-xs text-brand-accent/60 uppercase tracking-widest">{exp.location}</p>
+        </div>
+      </div>
+      <div className="md:col-span-8 lg:col-span-9 border-l-0 md:border-l border-[var(--glass-border)] pl-0 md:pl-12 pt-8 md:pt-0">
+        <h4 className="text-2xl font-display font-semibold mb-8 text-[var(--text-main)] underline decoration-brand-accent underline-offset-8 decoration-2">{exp.title}</h4>
+        <ul className="space-y-6">
+          {exp.highlights.map((h, j) => (
+            <li key={j} className="text-xl text-[var(--text-dim)] font-light leading-relaxed group hover:text-[var(--accent)] transition-colors">
+              {h}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+};
+
 export function ExperienceSection() {
   return (
     <div className="space-y-32">
-      {RESUME_DATA.experience.map((exp, i) => {
-        const rowRef = useRef(null);
-        const { scrollYProgress } = useScroll({
-          target: rowRef,
-          offset: ["start end", "end start"]
-        });
-        const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
-
-        return (
-          <motion.div
-            key={i}
-            ref={rowRef}
-            style={{ y }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-12 gap-12 glass p-10 relative overflow-hidden"
-          >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full" />
-          <div className="md:col-span-4 lg:col-span-3 flex flex-col justify-center">
-            <div>
-              <p className="font-mono text-brand-accent text-sm mb-2">{exp.period}</p>
-              <h3 className="text-3xl font-bold font-display uppercase tracking-tight leading-none mb-4">{exp.company}</h3>
-              <p className="text-xs text-brand-accent/60 uppercase tracking-widest">{exp.location}</p>
-            </div>
-          </div>
-          <div className="md:col-span-8 lg:col-span-9 border-l-0 md:border-l border-[var(--glass-border)] pl-0 md:pl-12 pt-8 md:pt-0">
-            <h4 className="text-2xl font-display font-semibold mb-8 text-[var(--text-main)] underline decoration-brand-accent underline-offset-8 decoration-2">{exp.title}</h4>
-            <ul className="space-y-6">
-              {exp.highlights.map((h, j) => (
-                <li key={j} className="text-xl text-[var(--text-dim)] font-light leading-relaxed group hover:text-[var(--accent)] transition-colors">
-                  {h}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
+      {RESUME_DATA.experience.map((exp, i) => (
+        <ExperienceRow key={i} exp={exp} i={i} />
       ))}
     </div>
   );
