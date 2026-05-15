@@ -8,7 +8,6 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue } from "moti
 import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
-import TextPressure from "./TextPressure";
 
 export function SectionHeader({ title, subtitle, number }: { title: string, subtitle?: string, number: string }) {
   const containerRef = useRef(null);
@@ -162,22 +161,15 @@ export function Hero() {
                 </motion.div>
 
                 <div className="space-y-1">
-                    <div className="h-12 md:h-20 lg:h-24 w-full">
-                      <TextPressure 
-                        text="Piyoosh" 
-                        flex={true} 
-                        textColor="var(--text-main)" 
-                        minFontSize={40} 
-                      />
-                    </div>
-                    <div className="h-12 md:h-20 lg:h-24 w-full">
-                      <TextPressure 
-                        text="Krishna M" 
-                        flex={true} 
-                        textColor="var(--text-main)" 
-                        minFontSize={40} 
-                      />
-                    </div>
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-main)] via-[var(--accent)] to-[var(--secondary)] animate-gradient"
+                  >
+                    Piyoosh <br />
+                    Krishna M
+                  </motion.h1>
                 </div>
               </div>
 
