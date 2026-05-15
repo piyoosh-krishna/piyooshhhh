@@ -13,19 +13,21 @@ const ShinyText = ({
   yoyo = false,
   pauseOnHover = false,
   direction = 'left',
-  delay = 0
+  delay = 0,
+  cursorResponsive = false
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const progress = useMotionValue(0);
   const elapsedRef = useRef(0);
   const lastTimeRef = useRef(null);
   const directionRef = useRef(direction === 'left' ? 1 : -1);
+  const containerRef = useRef(null);
 
   const animationDuration = speed * 1000;
   const delayDuration = delay * 1000;
 
   useAnimationFrame(time => {
-    if (disabled || isPaused) {
+    if (disabled || isPaused || cursorResponsive) {
       lastTimeRef.current = null;
       return;
     }
@@ -77,14 +79,26 @@ const ShinyText = ({
   });
 
   useEffect(() => {
-    directionRef.current = direction === 'left' ? 1 : -1;
-    elapsedRef.current = 0;
-    progress.set(0);
+    if (!cursorResponsive) {
+      directionRef.current = direction === 'left' ? 1 : -1;
+      elapsedRef.current = 0;
+      progress.set(0);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [direction]);
+  }, [direction, cursorResponsive]);
 
   // Transform: p=0 -> 150% (shine off right), p=100 -> -50% (shine off left)
   const backgroundPosition = useTransform(progress, p => `${150 - p * 2}% center`);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!cursorResponsive || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    // Map x (0-100) to progress (0-100)
+    // If direction is left, 0 at left, 100 at right.
+    // However, ShinyText animation 0 is "start" and 100 is "end".
+    progress.set(x);
+  }, [cursorResponsive, progress]);
 
   const handleMouseEnter = useCallback(() => {
     if (pauseOnHover) setIsPaused(true);
@@ -92,7 +106,11 @@ const ShinyText = ({
 
   const handleMouseLeave = useCallback(() => {
     if (pauseOnHover) setIsPaused(false);
-  }, [pauseOnHover]);
+    if (cursorResponsive) {
+      // Optionally reset or leave it at the edge
+      // progress.set(0);
+    }
+  }, [pauseOnHover, cursorResponsive]);
 
   const gradientStyle = {
     backgroundImage: `linear-gradient(${spread}deg, ${color} 0%, ${color} 35%, ${shineColor} 50%, ${color} 65%, ${color} 100%)`,
@@ -104,8 +122,10 @@ const ShinyText = ({
 
   return (
     <motion.span
+      ref={containerRef}
       className={`shiny-text ${className}`}
       style={{ ...gradientStyle, backgroundPosition }}
+      onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
