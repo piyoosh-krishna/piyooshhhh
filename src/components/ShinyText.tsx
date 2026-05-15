@@ -13,11 +13,12 @@ const ShinyText = ({
   yoyo = false,
   pauseOnHover = false,
   direction = 'left',
-  delay = 0
+  delay = 0,
+  initialOffset = 0
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const progress = useMotionValue(0);
-  const elapsedRef = useRef(0);
+  const elapsedRef = useRef(initialOffset * 1000);
   const lastTimeRef = useRef(null);
   const directionRef = useRef(direction === 'left' ? 1 : -1);
 
