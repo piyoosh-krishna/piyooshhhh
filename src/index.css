@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --color-brand-bg: var(--bg);
+  --color-brand-accent: var(--accent); 
+  --color-brand-secondary: var(--secondary);
+  --color-brand-surface: var(--surface);
+  --color-brand-border: var(--border);
+  --color-brand-glow: var(--glow);
+}
+
+:root {
+  --bg: #050505;
+  --accent: #3b82f6;
+  --secondary: #0ea5e9;
+  --surface: #0a0a0a;
+  --border: #1a1a1a;
+  --glow: rgba(59, 130, 246, 0.15);
+  --text-main: #f3f4f6;
+  --text-dim: #9ca3af;
+  --text-muted: #6b7280;
+  --grid-color: #111;
+  --glass-bg: rgba(10, 10, 10, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+.light {
+  --bg: #f8fafc;
+  --accent: #2563eb;
+  --secondary: #0284c7;
+  --surface: #ffffff;
+  --border: #cbd5e1;
+  --glow: rgba(37, 99, 235, 0.25);
+  --text-main: #0f172a;
+  --text-dim: #1e293b;
+  --text-muted: #475569;
+  --grid-color: #e2e8f0;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 35px var(--glow), 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 60px var(--glow), 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+}
+
+.glow-card:hover {
+  box-shadow: 0 0 30px var(--color-brand-glow);
+}
+
+/* Custom selection */
+::selection {
+  background-color: var(--color-brand-accent);
+  color: white;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-accent);
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to bottom, transparent, var(--color-brand-accent), transparent);
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
