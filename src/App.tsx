@@ -4,7 +4,7 @@
  */
 
 import { useState } from "react";
-import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "motion/react";
+import { motion, useScroll, useSpring, useTransform, AnimatePresence, useMotionValueEvent } from "motion/react";
 import { Github, Linkedin, Mail, Send, Binary, Cpu, Database, Layout, X, Menu } from "lucide-react";
 import { RESUME_DATA } from "./constants";
 import {
@@ -31,6 +31,18 @@ export default function App() {
   });
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   return (
     <div className="selection:bg-brand-accent selection:text-white relative min-h-screen overflow-x-hidden">
@@ -96,11 +108,19 @@ export default function App() {
       <div className="fixed inset-0 z-[90] pointer-events-none opacity-[0.03] contrast-150 brightness-100 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-[300] px-6 py-6 md:px-12 md:py-10 flex justify-between items-center text-[var(--text-main)]">
+      <motion.nav 
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: "-100%" }
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="fixed top-0 left-0 w-full z-[300] px-6 py-6 md:px-12 md:py-10 flex justify-between items-center text-[var(--text-main)]"
+      >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="font-display font-bold text-xl md:text-2xl uppercase tracking-tighter mix-blend-difference text-white"
+          className="font-display font-bold text-xl md:text-2xl uppercase tracking-tighter"
         >
           PIYOOSH_KRISHNA_M <span className="text-brand-accent font-light hidden sm:inline">// 0.1</span>
         </motion.div>
@@ -137,7 +157,7 @@ export default function App() {
         >
           {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
-      </nav>
+      </motion.nav>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
