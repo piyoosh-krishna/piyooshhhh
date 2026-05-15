@@ -275,8 +275,18 @@ export function Hero() {
 }
 
 export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+  const cardRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   return (
     <motion.div
+      ref={cardRef}
+      style={{ y }}
       initial={{ opacity: 0, y: 100, scale: 0.9, rotateX: 20 }}
       whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -337,14 +347,24 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 export function ExperienceSection() {
   return (
     <div className="space-y-32">
-      {RESUME_DATA.experience.map((exp, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-12 gap-12 glass p-10 relative overflow-hidden"
-        >
+      {RESUME_DATA.experience.map((exp, i) => {
+        const rowRef = useRef(null);
+        const { scrollYProgress } = useScroll({
+          target: rowRef,
+          offset: ["start end", "end start"]
+        });
+        const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
+        return (
+          <motion.div
+            key={i}
+            ref={rowRef}
+            style={{ y }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-12 gap-12 glass p-10 relative overflow-hidden"
+          >
           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full" />
           <div className="md:col-span-4 lg:col-span-3 flex flex-col justify-center">
             <div>
