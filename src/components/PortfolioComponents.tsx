@@ -4,7 +4,7 @@
  */
 
 import React, { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform, AnimatePresence, useMotionValueEvent, useMotionTemplate } from "motion/react";
+import { motion, useScroll, useSpring, useTransform, AnimatePresence, useMotionValueEvent, useMotionTemplate, useMotionValue } from "motion/react";
 import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
@@ -19,7 +19,7 @@ export function GlitchReveal({ text, className }: { text: string, className?: st
   );
 }
 
-export function SectionWrapper({ children, className }: { children: React.ReactNode, className?: string }) {
+export function SectionWrapper({ children, className, id }: { children: React.ReactNode, className?: string, id?: string }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -35,6 +35,7 @@ export function SectionWrapper({ children, className }: { children: React.ReactN
   return (
     <motion.div
       ref={ref}
+      id={id}
       style={{ scale, opacity, filter, y }}
       className={className}
     >
