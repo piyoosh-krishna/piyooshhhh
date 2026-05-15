@@ -31,6 +31,14 @@ export default function App() {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="selection:bg-brand-accent selection:text-white relative min-h-screen overflow-x-hidden">
       <ThemeToggle />
@@ -70,12 +78,12 @@ export default function App() {
       {/* Global Antigravity Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <Antigravity
-          count={400}
-          magnetRadius={10}
-          ringRadius={12}
+          count={isMobile ? 200 : 400}
+          magnetRadius={isMobile ? 5 : 10}
+          ringRadius={isMobile ? 6 : 12}
           waveSpeed={0.4}
           waveAmplitude={1.2}
-          particleSize={1.2}
+          particleSize={isMobile ? 0.8 : 1.2}
           lerpSpeed={0.06}
           color={'#3b82f6'}
           autoAnimate={true}
