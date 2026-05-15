@@ -1,20 +1,26 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Piyoosh Krishna M | AI & DevOps Portfolio
 
-# Run and deploy your AI Studio app
+Professional portfolio of Piyoosh Krishna M, specializing in AI Engineering, DevOps, and Machine Learning.
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/be0f05bf-7ee1-442c-b5ce-b825a5c51184
+## Features
+- **Modern UI**: Built with React 19 and Tailwind CSS 4.
+- **Dynamic Animations**: Powered by Motion 12 and GSAP.
+- **High Fidelity**: Forensic-inspired aesthetic with glassmorphism and interactive backgrounds.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
+2. **Run the app:**
+   ```bash
+   npm run dev
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Tech Stack
+- **Frontend**: React, TypeScript, Vite
+- **Styling**: Vanilla CSS, Tailwind CSS
+- **Animation**: Motion (formerly Framer Motion), GSAP
+- **Icons**: Lucide React

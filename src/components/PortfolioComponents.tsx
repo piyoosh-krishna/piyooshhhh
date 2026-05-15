@@ -5,7 +5,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "motion/react";
-import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Binary, Cpu, Database, Layout, Download } from "lucide-react";
+import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
 
