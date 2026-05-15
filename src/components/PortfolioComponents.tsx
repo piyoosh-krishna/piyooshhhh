@@ -102,8 +102,8 @@ export function Hero() {
         style={{ y: bgY }}
         className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0"
       >
-        <h1 className="text-[12vw] md:text-[11vw] font-display font-bold leading-none tracking-tighter whitespace-nowrap select-none" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
-          ARTIFICIAL INTELLIGENCE
+        <h1 className="text-[18vw] md:text-[20vw] font-display font-bold leading-[0.8] tracking-tighter select-none text-center" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
+          ARTIFICIAL<br />INTELLIGENCE
         </h1>
       </motion.div>
 
