@@ -4,10 +4,44 @@
  */
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "motion/react";
+import { motion, useScroll, useSpring, useTransform, AnimatePresence, useMotionValueEvent, useMotionTemplate } from "motion/react";
 import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Download } from "lucide-react";
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
+
+export function GlitchReveal({ text, className }: { text: string, className?: string }) {
+  return (
+    <div className={`relative group inline-block ${className}`}>
+      <span className="relative z-10">{text}</span>
+      <span className="absolute top-0 left-0 -translate-x-[2px] -translate-y-[2px] text-red-500/50 opacity-0 group-hover:opacity-100 group-hover:animate-pulse z-0 mix-blend-screen select-none">{text}</span>
+      <span className="absolute top-0 left-0 translate-x-[2px] translate-y-[2px] text-blue-500/50 opacity-0 group-hover:opacity-100 group-hover:animate-pulse z-0 mix-blend-screen select-none">{text}</span>
+    </div>
+  );
+}
+
+export function SectionWrapper({ children, className }: { children: React.ReactNode, className?: string }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center center", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const blurValue = useTransform(scrollYProgress, [0, 0.5, 1], [8, 0, 8]);
+  const filter = useMotionTemplate`blur(${blurValue}px)`;
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ scale, opacity, filter, y }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export function SectionHeader({ title, subtitle, number }: { title: string, subtitle?: string, number: string }) {
   const containerRef = useRef(null);
@@ -34,19 +68,18 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
 
         <div className="relative group">
           <motion.h2
-            initial={{ opacity: 0, x: -100, rotate: -2 }}
-            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none"
           >
             {title}
           </motion.h2>
           <motion.div
-            initial={{ width: 0, opacity: 0 }}
-            whileInView={{ width: "100%", opacity: 1 }}
+            initial={{ width: 0 }}
+            whileInView={{ width: "100%" }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 1.5, ease: "circOut" }}
+            transition={{ delay: 0.5, duration: 1 }}
             className="h-[2px] bg-brand-accent mt-4 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
           />
         </div>
@@ -175,8 +208,10 @@ export function Hero() {
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-main)] via-[var(--accent)] to-[var(--secondary)] animate-gradient"
                   >
-                    Piyoosh <br />
-                    Krishna M
+                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tighter mb-8 transform-gpu">
+                      <GlitchReveal text="PIYOOSH" className="block" />
+                      <GlitchReveal text="KRISHNA M" className="block text-brand-accent" />
+                    </h1>
                   </motion.h1>
                 </div>
               </div>
@@ -275,26 +310,11 @@ export function Hero() {
 }
 
 export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const cardRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
   return (
     <motion.div
-      ref={cardRef}
-      style={{ y }}
-      initial={{ opacity: 0, y: 100, scale: 0.9, rotateX: 20 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ 
-        duration: 1.2, 
-        ease: [0.16, 1, 0.3, 1],
-        scale: { type: "spring", damping: 20, stiffness: 100 }
-      }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       className="group glass border border-[var(--glass-border)] p-8 md:p-12 transition-all hover:bg-white/[0.03] hover:border-brand-accent/30 relative overflow-hidden"
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full group-hover:bg-brand-accent/20 transition-all" />
@@ -345,18 +365,9 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 }
 
 const ExperienceRow = ({ exp, i }: { exp: any, i: number }) => {
-  const rowRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: rowRef,
-    offset: ["start end", "end start"]
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
-
   return (
     <motion.div
       key={i}
-      ref={rowRef}
-      style={{ y }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -397,10 +408,9 @@ export function ExperienceSection() {
 export function SkillCategory({ title, skills, icon: Icon }: { title: string, skills: string[], icon: any }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, rotateY: 15 }}
-      whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
       className="group glass border border-[var(--glass-border)] p-8 transition-all hover:border-brand-accent/20 text-center md:text-left"
     >
       <div className="w-12 h-12 bg-black/5 flex items-center justify-center rounded-2xl mb-8 mx-auto md:mx-0 group-hover:bg-brand-accent group-hover:text-white transition-all text-[var(--text-muted)]">

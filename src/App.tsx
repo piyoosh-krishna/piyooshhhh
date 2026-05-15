@@ -12,7 +12,9 @@ import {
   SectionHeader,
   ProjectCard,
   ExperienceSection,
-  SkillCategory
+  SkillCategory,
+  SectionWrapper,
+  GlitchReveal
 } from "./components/PortfolioComponents";
 import ScrollReveal from "./components/ScrollReveal";
 import Antigravity from "./components/Antigravity";
@@ -32,11 +34,6 @@ export default function App() {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   
-  // New scroll-driven animations
-  const skew = useTransform(scrollYProgress, [0, 1], [0, 0]); // Base skew
-  const scale = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 1, 0.95, 0.9]);
-  const mainY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -50]), { stiffness: 100, damping: 30 });
-
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
 
@@ -111,20 +108,6 @@ export default function App() {
 
       {/* Noise/Grain Overlay */}
       <div className="fixed inset-0 z-[90] pointer-events-none opacity-[0.03] contrast-150 brightness-100 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-
-      {/* Global Scroll Progress Line (Neural Link) */}
-      <div className="fixed left-4 md:left-8 top-0 bottom-0 w-[1px] bg-white/5 z-[200] hidden sm:block">
-        <motion.div 
-          style={{ height: scaleX }}
-          className="w-full bg-brand-accent shadow-[0_0_20px_rgba(59,130,246,0.8)]"
-        />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border border-brand-accent/20 flex items-center justify-center">
-          <div className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
-        </div>
-        <div className="absolute top-3/4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border border-brand-accent/20 flex items-center justify-center">
-          <div className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
-        </div>
-      </div>
 
       {/* Navigation */}
       <motion.nav 
@@ -213,15 +196,12 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <motion.main 
-        style={{ scale, y: mainY }}
-        className="relative z-10"
-      >
+      <main className="relative z-10">
         {/* Hero Section */}
         <Hero />
 
         {/* About Section */}
-        <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <SectionWrapper id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="01"
             title="About Me"
@@ -243,10 +223,9 @@ export default function App() {
 
             <div className="space-y-12">
               <motion.div
-                initial={{ opacity: 0, x: 50, rotateY: -10 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 className="glass p-12 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-2 h-full bg-brand-accent/20" />
@@ -264,10 +243,10 @@ export default function App() {
               </motion.div>
             </div>
           </div>
-        </section>
+        </SectionWrapper>
 
         {/* Projects Section */}
-        <section id="projects" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <SectionWrapper id="projects" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="02"
             title="Projects"
@@ -278,10 +257,10 @@ export default function App() {
               <ProjectCard key={i} project={project} />
             ))}
           </div>
-        </section>
+        </SectionWrapper>
 
         {/* Skills Section */}
-        <section id="skills" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <SectionWrapper id="skills" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="03"
             title="Skills"
@@ -295,10 +274,10 @@ export default function App() {
             <SkillCategory title="Web Dev" skills={RESUME_DATA.skills.fundamentals} icon={Binary} />
             <SkillCategory title="DevOps & Tools" skills={RESUME_DATA.skills.tools} icon={Binary} />
           </div>
-        </section>
+        </SectionWrapper>
 
         {/* Certifications Section */}
-        <section id="certifications" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <SectionWrapper id="certifications" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="04"
             title="Certifications"
@@ -330,17 +309,17 @@ export default function App() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </SectionWrapper>
 
         {/* Experience Section */}
-        <section id="experience" className="py-32 md:py-64 px-6 md:px-12 w-full">
+        <SectionWrapper id="experience" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="05"
             title="Experience"
             subtitle="My professional journey and career milestones."
           />
           <ExperienceSection />
-        </section>
+        </SectionWrapper>
 
         {/* Contact Section */}
         <section id="contact" className="py-32 md:py-64 px-6 md:px-12 w-full">
@@ -394,7 +373,7 @@ export default function App() {
             </div>
           </div>
         </section>
-      </motion.main>
+      </main>
 
       <footer className="py-24 px-6 md:px-12 border-t border-[var(--glass-border)]">
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-12">
