@@ -199,63 +199,70 @@ export default function App() {
         <Hero />
 
         {/* About Section */}
-        <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full max-w-7xl mx-auto">
+        <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
             number="01"
             title="About Me"
             subtitle="I build efficient, scalable AI and DevOps solutions."
           />
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
-            {/* Main Content */}
-            <div className="lg:col-span-8 space-y-12">
-              <div className="relative p-1 md:p-2">
-                <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-brand-accent/30 -translate-x-4 -translate-y-4" />
-                <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-brand-accent/30 translate-x-4 translate-y-4" />
-                
-                <div className="glass p-8 md:p-16 relative overflow-hidden backdrop-blur-3xl bg-white/[0.02]">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-brand-accent via-brand-accent/20 to-transparent" />
-                  <ScrollReveal
-                    baseOpacity={0}
-                    enableBlur={true}
-                    baseRotation={2}
-                    blurStrength={10}
-                    textClassName="text-2xl md:text-4xl font-light leading-tight text-[var(--text-main)]"
-                  >
-                    {RESUME_DATA.summary}
-                  </ScrollReveal>
-                </div>
+          
+          <div className="max-w-5xl mx-auto space-y-12">
+            {/* Immersive Summary Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-brand-accent/20 to-purple-500/20 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+              <div className="glass p-10 md:p-20 relative rounded-[2.5rem] overflow-hidden bg-white/[0.01] border-brand-accent/10">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent/30 to-transparent" />
+                <ScrollReveal
+                  baseOpacity={0}
+                  enableBlur={true}
+                  baseRotation={1}
+                  blurStrength={10}
+                  textClassName="text-2xl md:text-5xl font-light leading-tight text-[var(--text-main)] text-center"
+                >
+                  {RESUME_DATA.summary}
+                </ScrollReveal>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Sidebar Details */}
-            <div className="lg:col-span-4 space-y-8">
-              <motion.div
-                initial={{ opacity: 0, x: 50, rotateY: -10 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                className="glass p-8 relative overflow-hidden border-brand-accent/10"
-              >
-                <div className="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-brand-accent/40 to-transparent" />
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">
-                    <Binary size={16} />
+            {/* Education Grid */}
+            <div className="grid md:grid-cols-2 gap-8">
+              {RESUME_DATA.education.map((edu, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  className="glass p-8 relative overflow-hidden group hover:bg-brand-accent/[0.02] transition-all"
+                >
+                  <div className="absolute top-0 left-0 w-1 h-0 group-hover:h-full bg-brand-accent transition-all duration-500" />
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+                      <Binary size={20} />
+                    </div>
+                    <span className="text-[10px] font-mono text-brand-accent uppercase tracking-[0.3em]">Credentials_{i+1}</span>
                   </div>
-                  <p className="text-[10px] font-mono text-brand-accent uppercase tracking-[0.3em]">Education_History</p>
-                </div>
-                
-                {RESUME_DATA.education.map((edu, i) => (
-                  <div key={i} className="space-y-4">
-                    <h4 className="text-xl font-bold font-display uppercase tracking-tight leading-tight">{edu.degree}</h4>
-                    <p className="text-[var(--text-dim)] text-sm uppercase font-light tracking-wide">{edu.institution}</p>
-                    <div className="flex justify-between items-center mt-8 pt-6 border-t border-[var(--glass-border)]">
-                      <span className="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-widest">{edu.period}</span>
-                      <span className="px-3 py-1 bg-brand-accent/5 border border-brand-accent/20 rounded-full text-[9px] font-mono text-brand-accent tracking-widest">GPA: {edu.cgpa}</span>
+                  
+                  <h4 className="text-xl font-bold font-display uppercase tracking-tight mb-2">{edu.degree}</h4>
+                  <p className="text-[var(--text-dim)] text-sm uppercase font-light tracking-widest">{edu.institution}</p>
+                  
+                  <div className="flex justify-between items-center mt-10 pt-6 border-t border-[var(--glass-border)]">
+                    <div className="flex flex-col">
+                      <span className="text-[8px] font-mono text-[var(--text-muted)] uppercase mb-1">Timeline</span>
+                      <span className="text-[10px] font-mono text-[var(--text-main)] uppercase">{edu.period}</span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="text-[8px] font-mono text-[var(--text-muted)] uppercase mb-1">Performance</span>
+                      <span className="text-[10px] font-mono text-brand-accent">GPA: {edu.cgpa}</span>
                     </div>
                   </div>
-                ))}
-              </motion.div>
-
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
