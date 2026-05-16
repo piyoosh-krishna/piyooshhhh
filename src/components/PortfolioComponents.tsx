@@ -262,7 +262,7 @@ export function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-base md:text-xl font-light text-brand-accent font-mono h-8 flex items-center"
+                className="text-lg md:text-2xl font-normal text-brand-accent font-mono h-8 flex items-center"
               >
                 <TextType
                   text={RESUME_DATA.specialization}
@@ -279,7 +279,7 @@ export function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="text-[var(--text-dim)] font-light max-w-lg leading-snug text-xs md:text-sm"
+                className="text-[var(--text-dim)] font-normal max-w-xl leading-relaxed text-base md:text-xl"
               >
                 Architecting neural interfaces between human logic and machine execution. Focused on building robust, scalable AI modules and efficient operational pipelines.
               </motion.p>
