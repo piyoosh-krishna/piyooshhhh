@@ -222,7 +222,7 @@ export default function App() {
               <motion.div
                 initial={{ opacity: 0, x: 50, rotateY: -10 }}
                 whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-50px" }}
                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 className="glass p-12 relative overflow-hidden"
               >
@@ -330,7 +330,7 @@ export default function App() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-50px" }}
                 className="mb-8"
               >
                 <div className="w-20 h-20 bg-brand-accent flex items-center justify-center rounded-2xl shadow-[0_0_30px_rgba(59,130,246,0.5)]">
@@ -341,7 +341,7 @@ export default function App() {
               <motion.h2
                 initial={{ opacity: 0, scale: 0.5, y: 100 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ margin: "-50px" }}
                 transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.2 }}
                 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter mb-12"
               >

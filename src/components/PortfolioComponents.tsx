@@ -16,31 +16,33 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
     offset: ["start end", "end start"]
   });
 
-  const skew = useTransform(scrollYProgress, [0, 1], [0, 10]);
-  const x = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <div ref={containerRef} className="mb-12 md:mb-32 overflow-hidden">
       <div className="flex flex-col gap-4">
         <motion.div
-          style={{ opacity }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-20px" }}
           className="flex items-center gap-4"
         >
           <span className="font-mono text-brand-accent text-xs tracking-[0.4em] mb-2">{number} // SECTION</span>
         </motion.div>
-        
+
         <div className="relative group">
           <motion.h2
-            style={{ x, skewX: skew, opacity }}
+            initial={{ opacity: 0, x: -100, rotate: -2 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+            viewport={{ margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none"
           >
             {title}
           </motion.h2>
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
-            viewport={{ once: true }}
+            initial={{ width: 0, opacity: 0 }}
+            whileInView={{ width: "100%", opacity: 1 }}
+            viewport={{ margin: "-20px" }}
             transition={{ delay: 0.5, duration: 1.5, ease: "circOut" }}
             className="h-[2px] bg-brand-accent mt-4 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
           />
@@ -48,7 +50,10 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
 
         {subtitle && (
           <motion.p
-            style={{ opacity }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.5 }}
+            viewport={{ margin: "-20px" }}
+            transition={{ delay: 0.3 }}
             className="text-sm md:text-xl font-light max-w-2xl mt-4 text-[var(--text-dim)]"
           >
             {subtitle}
@@ -98,7 +103,7 @@ export function Hero() {
 
       {/* Background massive stroke text */}
       <motion.div
-        style={{ y: bgY, x: useTransform(scrollYProgress, [0, 1], [0, -200]) }}
+        style={{ y: bgY }}
         className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0"
       >
         <h1 className="text-[25vw] sm:text-[20vw] font-display font-bold leading-[0.8] tracking-tighter select-none text-center" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
@@ -281,7 +286,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       style={{ y }}
       initial={{ opacity: 0, y: 100, scale: 0.9, rotateX: 20 }}
       whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ margin: "-50px" }}
       transition={{ 
         duration: 1.2, 
         ease: [0.16, 1, 0.3, 1],
@@ -351,7 +356,7 @@ const ExperienceRow = ({ exp, i }: { exp: any, i: number }) => {
       style={{ y }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ margin: "-50px" }}
       className="grid md:grid-cols-12 gap-12 glass p-10 relative overflow-hidden"
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full" />
@@ -391,7 +396,7 @@ export function SkillCategory({ title, skills, icon: Icon }: { title: string, sk
     <motion.div
       initial={{ opacity: 0, y: 50, rotateY: 15 }}
       whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-      viewport={{ once: true }}
+      viewport={{ margin: "-50px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="group glass p-8 transition-all hover:border-brand-accent/20 text-center md:text-left"
     >
