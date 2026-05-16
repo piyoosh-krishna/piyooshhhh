@@ -44,7 +44,7 @@ export default function App() {
   });
 
   return (
-    <div className="selection:bg-brand-accent selection:text-white relative min-h-screen overflow-x-hidden">
+    <div id="app-root" className="selection:bg-brand-accent selection:text-white relative min-h-screen bg-black overflow-x-hidden">
       <ThemeToggle />
       <AnimatePresence>
         {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
@@ -79,8 +79,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Global Antigravity Background Layer */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* Strict Background Layer */}
+      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
         <Antigravity
           count={400}
           magnetRadius={10}
@@ -96,15 +96,13 @@ export default function App() {
         />
       </div>
 
+      <div className="relative" style={{ zIndex: 1 }}>
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-brand-accent origin-left z-[200]"
+          style={{ scaleX: scrollYProgress }}
+        />
 
-      {/* Scroll Progress */}
-      <motion.div
-        style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-1 bg-brand-accent origin-left z-[300]"
-      />
 
-      {/* Noise/Grain Overlay */}
-      <div className="fixed inset-0 z-[90] pointer-events-none opacity-[0.03] contrast-150 brightness-100 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       {/* Navigation */}
       <motion.nav 
@@ -397,5 +395,6 @@ export default function App() {
         </div>
       </footer>
     </div>
+  </div>
   );
 }
