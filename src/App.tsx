@@ -57,7 +57,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setPreviewImage(null)}
-            className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center p-4 md:p-12 cursor-pointer"
+            className="fixed inset-0 z-[1000] bg-brand-bg/60 backdrop-blur-3xl flex items-center justify-center p-4 md:p-12 cursor-pointer"
           >
             <button 
               onClick={(e) => { e.stopPropagation(); setPreviewImage(null); }}
@@ -166,7 +166,7 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[250] bg-brand-bg flex flex-col justify-center px-12 gap-12"
+            className="fixed inset-0 z-[250] glass-premium flex flex-col justify-center px-12 gap-12"
           >
             {[
               { name: "About", id: "about" },
@@ -205,7 +205,7 @@ export default function App() {
             subtitle="I build efficient, scalable AI and DevOps solutions."
           />
           <div className="grid md:grid-cols-2 gap-24 items-start">
-            <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
+            <div className="glass-premium p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
               <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent/20" />
               <ScrollReveal
                 baseOpacity={0}
