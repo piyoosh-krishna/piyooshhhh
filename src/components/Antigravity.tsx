@@ -100,13 +100,16 @@ const AntigravityInner = ({
     const scrollVal = scrollYProgress ? scrollYProgress.get() : 0;
     const isHeroActive = scrollVal < 0.05; // Consider Hero active if scroll is less than 5%
 
-    if (!interactive || !isHeroActive || (autoAnimate && Date.now() - lastMouseMoveTime.current > 2000)) {
+    const isMobile = typeof window !== 'undefined' && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
+    
+    if (isMobile || !interactive || !isHeroActive || (autoAnimate && Date.now() - lastMouseMoveTime.current > 2000)) {
       const time = state.clock.getElapsedTime();
-      destX = Math.sin(time * 0.5) * (v.width / 4);
-      destY = Math.cos(time * 0.5 * 2) * (v.height / 4);
+      // More complex multi-sine movement for "automated" feel
+      destX = (Math.sin(time * 0.3) * 0.7 + Math.sin(time * 0.7) * 0.3) * (v.width / 3);
+      destY = (Math.cos(time * 0.4) * 0.6 + Math.sin(time * 0.8) * 0.4) * (v.height / 3);
     }
 
-    const smoothFactor = 0.05;
+    const smoothFactor = isMobile ? 0.02 : 0.05; // Smoother drift on mobile
     virtualMouse.current.x += (destX - virtualMouse.current.x) * smoothFactor;
     virtualMouse.current.y += (destY - virtualMouse.current.y) * smoothFactor;
 
