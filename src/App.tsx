@@ -253,14 +253,9 @@ export default function App() {
             />
           <div className="grid md:grid-cols-2 gap-24 items-start">
             <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
-              <ScrollReveal
-                baseOpacity={0}
-                enableBlur={false}
-                baseRotation={0}
-                textClassName="text-xl md:text-3xl font-light leading-relaxed text-[var(--text-main)]"
-              >
+              <p className="text-[var(--text-main)]">
                 {RESUME_DATA.summary}
-              </ScrollReveal>
+              </p>
             </div>
 
             <div className="space-y-12">
