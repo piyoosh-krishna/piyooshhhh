@@ -45,44 +45,32 @@ export default function App() {
 
   useEffect(() => {
     setIsLoading(true);
-    // Standard loader timer
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-
-    // NUCLEAR FIX: Runtime CSS Injection
-    // This bypasses any build-time minifiers or optimizations that might be stripping backdrop-filters
-    const style = document.createElement('style');
-    style.id = 'runtime-glass-fix';
-    style.innerHTML = `
-      .glass {
-        background: rgba(255, 255, 255, 0.08) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-        backdrop-filter: blur(24px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
-      }
-      
-      canvas {
-        z-index: -1 !important;
-        pointer-events: none !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        background: transparent !important;
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      clearTimeout(timer);
-      const existingStyle = document.getElementById('runtime-glass-fix');
-      if (existingStyle) existingStyle.remove();
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div id="app-root" className="selection:bg-brand-accent selection:text-white relative min-h-screen overflow-x-hidden">
+    <div id="app-root" className="selection:bg-brand-accent selection:text-white relative min-h-screen bg-black overflow-x-hidden">
+      <style dangerouslySetInnerHTML={{ __html: `
+        .glass {
+          background: rgba(255, 255, 255, 0.08) !important;
+          -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+          backdrop-filter: blur(24px) saturate(180%) !important;
+          border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        canvas {
+          z-index: -1 !important;
+          pointer-events: none !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          background: transparent !important;
+        }
+      `}} />
       <ThemeToggle />
       <AnimatePresence>
         {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
