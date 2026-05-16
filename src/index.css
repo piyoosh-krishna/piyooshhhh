@@ -57,10 +57,10 @@ body {
 
 
 .glass {
-  /* Hardcoded values to bypass CSS variable resolution issues in production */
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(30px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+  /* DIAGNOSTIC TEST 2: Bright Green Tint */
+  background: rgba(0, 255, 0, 0.3) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
   
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
