@@ -79,11 +79,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* DIAGNOSTIC TEST 1: Bright Red Wall behind everything */}
-      <div className="fixed inset-0 bg-red-600 z-[-2]" />
-
-      {/* Global Antigravity Background (Sibling Layer) */}
-      <div className="fixed inset-0 z-[-1] pointer-events-none">
+      {/* Global Antigravity Background Layer */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Antigravity
           count={400}
           magnetRadius={10}
@@ -196,8 +193,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Content Layer (Standard Layering) */}
-      <div className="relative z-10 isolate transform-gpu">
+      {/* Content Layer */}
+      <div className="relative z-10">
         {/* Hero Section */}
         <Hero />
 
