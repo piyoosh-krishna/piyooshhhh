@@ -203,11 +203,27 @@ export function Hero() {
             <div className="space-y-4 md:space-y-6 flex-1">
 
 
-              <div className="flex flex-row-reverse items-center justify-between gap-4 sm:flex-row sm:justify-start sm:gap-6">
+              <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.15,
+                      delayChildren: 0.4
+                    }
+                  }
+                }}
+                className="flex flex-row-reverse items-center justify-between gap-4 sm:flex-row sm:justify-start sm:gap-6"
+              >
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.5, rotate: -15, filter: "blur(20px)" },
+                    visible: { opacity: 1, scale: 1, rotate: 0, filter: "blur(0px)" }
+                  }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="relative group shrink-0"
                 >
                   {/* 3D Pop-out Image Container */}
@@ -244,24 +260,26 @@ export function Hero() {
                   </div>
                 </motion.div>
 
-                <div className="space-y-1 text-left">
+                <div className="space-y-1 text-left overflow-hidden">
                   <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    variants={{
+                      hidden: { opacity: 0, y: 100 },
+                      visible: { opacity: 1, y: 0 }
+                    }}
                     style={{ x: nameX, y: nameY }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-main)] via-[var(--accent)] to-[var(--secondary)] animate-gradient"
                   >
                     Piyoosh <br />
                     Krishna M
                   </motion.h1>
                 </div>
-              </div>
+              </motion.div>
 
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2, duration: 1 }}
                 className="text-lg md:text-2xl font-normal text-brand-accent font-mono h-8 flex items-center"
               >
                 <TextType
@@ -271,20 +289,25 @@ export function Hero() {
                   showCursor={true}
                   cursorCharacter="█"
                   loop={true}
-                  initialDelay={1000}
+                  initialDelay={2000}
                 />
               </motion.div>
 
               <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 1 }}
                 className="text-[var(--text-dim)] font-normal max-w-xl leading-relaxed text-base md:text-xl"
               >
                 Architecting neural interfaces between human logic and machine execution. Focused on building robust, scalable AI modules and efficient operational pipelines.
               </motion.p>
 
-              <div className="flex flex-row gap-3 pt-2">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.6, duration: 0.8 }}
+                className="flex flex-row gap-3 pt-2"
+              >
                 <motion.a
                   whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(59,130,246,0.4)" }}
                   whileTap={{ scale: 0.95 }}
@@ -303,7 +326,7 @@ export function Hero() {
                   Download CV
                   <Download size={14} />
                 </motion.a>
-              </div>
+              </motion.div>
             </div>
 
             <motion.div
