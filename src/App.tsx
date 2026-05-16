@@ -56,8 +56,8 @@ export default function App() {
       <style dangerouslySetInnerHTML={{ __html: `
         .glass {
           background: rgba(255, 255, 255, 0.08) !important;
-          -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-          backdrop-filter: blur(24px) saturate(180%) !important;
+          -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+          backdrop-filter: blur(16px) saturate(180%) !important;
           border: 1px solid rgba(255, 255, 255, 0.1) !important;
           box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
           color: white !important;
@@ -76,7 +76,7 @@ export default function App() {
         
         canvas {
           z-index: 0 !important;
-          pointer-events: none !important;
+          pointer-events: auto !important;
           position: fixed !important;
           top: 0 !important;
           left: 0 !important;

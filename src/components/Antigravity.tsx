@@ -193,6 +193,7 @@ const Antigravity = (props: AntigravityProps) => {
         background: 'transparent',
         ...props.style
       }}
+      eventSource={typeof window !== 'undefined' ? window.document.body : undefined}
     >
       <AntigravityInner {...props} />
     </Canvas>
