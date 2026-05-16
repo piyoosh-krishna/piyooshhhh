@@ -88,7 +88,7 @@ export default function App() {
           ringRadius={12}
           waveSpeed={0.4}
           waveAmplitude={1.2}
-          particleSize={1.8}
+          particleSize={0.8}
           lerpSpeed={0.06}
           color={'#3b82f6'}
           autoAnimate={true}
