@@ -548,7 +548,7 @@ export function SkillCategory({ title, skills, icon: Icon }: { title: string, sk
       <h4 className="text-sm font-mono text-brand-accent uppercase tracking-[0.4em] mb-8">{title}</h4>
       <div className="flex flex-wrap gap-3 justify-center md:justify-start">
         {skills.map((skill, i) => (
-          <span key={i} className="px-6 py-3 bg-brand-bg border border-brand-border text-base font-normal text-white hover:border-brand-accent transition-all cursor-default rounded-xl">
+          <span key={i} className="px-6 py-3 bg-brand-bg border border-brand-border text-base font-normal text-white/80 hover:text-white hover:border-brand-accent transition-all cursor-default rounded-xl">
             {skill}
           </span>
         ))}
