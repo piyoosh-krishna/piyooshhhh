@@ -230,9 +230,9 @@ export function Hero() {
                         animate={{
                           filter: isPopped ? 'grayscale(0%)' : undefined,
                           scale: isPopped ? 1.45 : undefined,
-                          y: isPopped ? 8 : 20
+                          y: isPopped ? 0 : undefined
                         }}
-                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-5 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700"
+                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-4 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700"
                       />
                     </div>
 
@@ -244,10 +244,10 @@ export function Hero() {
                         animate={{
                           filter: isPopped ? 'grayscale(0%)' : undefined,
                           scale: isPopped ? 1.45 : undefined,
-                          y: isPopped ? 8 : 20,
+                          y: isPopped ? 0 : undefined,
                           opacity: isPopped ? 1 : undefined
                         }}
-                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-5 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 opacity-0 group-hover:opacity-100 transition-all duration-700"
+                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-4 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 opacity-0 group-hover:opacity-100 transition-all duration-700"
                         style={{
                           maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)',
                           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)'
