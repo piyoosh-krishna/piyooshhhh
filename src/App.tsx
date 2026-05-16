@@ -132,9 +132,16 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Strict Background Layer */}
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
-        <Antigravity
+      {/* Main Content Container - Hidden while loading */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 0.2 }}
+        className="relative"
+      >
+        {/* Strict Background Layer */}
+        <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+          <Antigravity
           count={400}
           magnetRadius={10}
           ringRadius={12}
@@ -450,7 +457,8 @@ export default function App() {
             </div>
           </div>
         </div>
-      </footer>
+        </footer>
+      </motion.div>
     </div>
   </div>
   );

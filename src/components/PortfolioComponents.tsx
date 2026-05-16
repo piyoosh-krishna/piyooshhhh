@@ -278,7 +278,7 @@ export function Hero() {
                     opacity: 1,
                     transition: {
                       staggerChildren: 0.15,
-                      delayChildren: 0.4
+                      delayChildren: 1.2 // Delayed to match vault door opening
                     }
                   }
                 }}
@@ -345,7 +345,7 @@ export function Hero() {
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.2, duration: 1 }}
+                transition={{ delay: 1.8, duration: 1 }}
                 className="text-lg md:text-2xl font-normal text-brand-accent font-mono h-8 flex items-center"
               >
                 <TextType
@@ -355,14 +355,14 @@ export function Hero() {
                   showCursor={true}
                   cursorCharacter="█"
                   loop={true}
-                  initialDelay={2000}
+                  initialDelay={2500}
                 />
               </motion.div>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.4, duration: 1 }}
+                transition={{ delay: 2.0, duration: 1 }}
                 className="text-[var(--text-dim)] font-normal max-w-xl leading-relaxed text-base md:text-xl"
               >
                 Architecting neural interfaces between human logic and machine execution. Focused on building robust, scalable AI modules and efficient operational pipelines.
@@ -371,7 +371,7 @@ export function Hero() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6, duration: 0.8 }}
+                transition={{ delay: 2.2, duration: 0.8 }}
                 className="flex flex-row gap-3 pt-2"
               >
                 <motion.a
