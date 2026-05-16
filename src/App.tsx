@@ -30,7 +30,6 @@ export default function App() {
     restDelta: 0.001
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);

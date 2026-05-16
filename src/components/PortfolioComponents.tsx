@@ -16,9 +16,6 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
     offset: ["start end", "end start"]
   });
 
-  const width = useTransform(scrollYProgress, [0.2, 0.5], ["0%", "100%"]);
-  const opacityLine = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
-  const textX = useTransform(scrollYProgress, [0.2, 0.5], [-50, 0]);
 
   return (
     <div ref={containerRef} className="mb-12 md:mb-32 overflow-hidden">
@@ -295,7 +292,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         ease: [0.16, 1, 0.3, 1],
         scale: { type: "spring", damping: 20, stiffness: 100 }
       }}
-      className="group glass border border-[var(--glass-border)] p-8 md:p-12 transition-all hover:bg-white/[0.03] hover:border-brand-accent/30 relative overflow-hidden"
+      className="group glass p-8 md:p-12 transition-all hover:bg-white/[0.03] hover:border-brand-accent/30 relative overflow-hidden"
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full group-hover:bg-brand-accent/20 transition-all" />
 
@@ -401,7 +398,7 @@ export function SkillCategory({ title, skills, icon: Icon }: { title: string, sk
       whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="group glass border border-[var(--glass-border)] p-8 transition-all hover:border-brand-accent/20 text-center md:text-left"
+      className="group glass p-8 transition-all hover:border-brand-accent/20 text-center md:text-left"
     >
       <div className="w-12 h-12 bg-black/5 flex items-center justify-center rounded-2xl mb-8 mx-auto md:mx-0 group-hover:bg-brand-accent group-hover:text-white transition-all text-[var(--text-muted)]">
         <Icon size={24} />
@@ -409,7 +406,7 @@ export function SkillCategory({ title, skills, icon: Icon }: { title: string, sk
       <h4 className="text-[10px] font-mono text-brand-accent uppercase tracking-[0.4em] mb-8">{title}</h4>
       <div className="flex flex-wrap gap-3 justify-center md:justify-start">
         {skills.map((skill, i) => (
-          <span key={i} className="px-4 py-2 bg-white/[0.03] border border-[var(--glass-border)] text-sm text-[var(--text-dim)] hover:text-[var(--text-main)] hover:border-brand-accent transition-all cursor-default rounded-xl">
+          <span key={i} className="px-4 py-2 bg-white/[0.03] border border-white/5 text-sm text-[var(--text-dim)] hover:text-[var(--text-main)] hover:border-brand-accent transition-all cursor-default rounded-xl">
             {skill}
           </span>
         ))}

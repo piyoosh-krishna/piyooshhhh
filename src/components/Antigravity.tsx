@@ -58,11 +58,7 @@ const AntigravityInner = ({
 
     for (let i = 0; i < count; i++) {
       const t = Math.random() * 100;
-      const factor = 20 + Math.random() * 100;
       const speed = 0.01 + Math.random() / 200;
-      const xFactor = -50 + Math.random() * 100;
-      const yFactor = -50 + Math.random() * 100;
-      const zFactor = -50 + Math.random() * 100;
 
       const x = (Math.random() - 0.5) * width;
       const y = (Math.random() - 0.5) * height;
@@ -72,20 +68,13 @@ const AntigravityInner = ({
 
       temp.push({
         t,
-        factor,
         speed,
-        xFactor,
-        yFactor,
-        zFactor,
         mx: x,
         my: y,
         mz: z,
         cx: x,
         cy: y,
         cz: z,
-        vx: 0,
-        vy: 0,
-        vz: 0,
         randomRadiusOffset
       });
     }
