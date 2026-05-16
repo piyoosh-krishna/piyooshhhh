@@ -52,7 +52,6 @@ body {
   background-color: #000 !important; /* Strictly Layer 1 */
   color: var(--text-main);
   font-family: var(--font-sans);
-  overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -64,10 +63,11 @@ body {
     var(--glass-bg-end)
   );
   /* Force hardware acceleration and prevent clipping context bugs */
-  backdrop-filter: blur(40px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  will-change: backdrop-filter;
   
   border: 1px solid var(--glass-border);
   box-shadow: 
@@ -97,9 +97,11 @@ body {
     var(--glass-bg-start) 0%,
     var(--glass-bg-end) 100%
   );
-  backdrop-filter: blur(100px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(100px) saturate(200%) !important;
+  backdrop-filter: blur(60px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(60px) saturate(200%) !important;
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: backdrop-filter;
   
   border: 1px solid var(--glass-border);
   position: relative;
