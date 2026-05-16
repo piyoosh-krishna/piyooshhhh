@@ -90,6 +90,9 @@ const AntigravityInner = ({
     let destX = (m.x * v.width) / 2;
     let destY = (m.y * v.height) / 2;
 
+    const scrollVal = scrollYProgress ? scrollYProgress.get() : 0;
+    const isHeroActive = scrollVal < 0.05; // Consider Hero active if scroll is less than 5%
+
     const isMobile = typeof window !== 'undefined' && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 1024);
     
     if (isMobile) {
