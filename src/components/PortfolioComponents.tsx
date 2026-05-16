@@ -115,7 +115,10 @@ export function Hero() {
         style={{ y, opacity, rotateX, rotateY }}
         className="w-full max-w-6xl z-30 relative transform-gpu pt-16 md:pt-0"
       >
-        <div className="glass-premium p-6 md:p-10 lg:p-12 relative overflow-hidden">
+        <div 
+          className="glass-premium p-6 md:p-10 lg:p-12 relative overflow-hidden"
+          style={{ backdropFilter: 'blur(40px) saturate(200%)', WebkitBackdropFilter: 'blur(40px) saturate(200%)' }}
+        >
           {/* Cyber accents */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
           <div className="absolute -top-32 -right-32 w-96 h-96 bg-brand-accent/20 blur-[120px] rounded-full pointer-events-none" />

@@ -49,7 +49,7 @@
 }
 
 body {
-  background-color: var(--bg);
+  background-color: #000; /* Fallback */
   color: var(--text-main);
   font-family: var(--font-sans);
   overflow-x: hidden;

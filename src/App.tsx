@@ -122,7 +122,7 @@ export default function App() {
           animate={{ opacity: 1 }}
           className="font-display font-bold text-xl md:text-2xl uppercase tracking-tighter"
         >
-          PIYOOSH_KRISHNA_M <span className="text-brand-accent font-light hidden sm:inline">// 0.1</span>
+          PIYOOSH_KRISHNA_M <span className="text-brand-accent font-light hidden sm:inline">// v1.2.0-LIVE_TEST</span>
         </motion.div>
 
         {/* Desktop Links */}

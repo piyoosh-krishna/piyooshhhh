@@ -10,7 +10,11 @@ export default function BackgroundPortal({ children }: { children: ReactNode }) 
     <div 
       id="global-background-portal"
       className="fixed inset-0 pointer-events-none" 
-      style={{ zIndex: -100 }}
+      style={{ 
+        zIndex: -100,
+        backgroundColor: "var(--bg)", // Move background color here
+        transition: "background-color 0.3s ease"
+      }}
     >
       {children}
     </div>,
