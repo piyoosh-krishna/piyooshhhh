@@ -12,7 +12,8 @@ import {
   SectionHeader,
   ProjectCard,
   ExperienceSection,
-  SkillCategory
+  SkillCategory,
+  SectionDivider
 } from "./components/PortfolioComponents";
 import ScrollReveal from "./components/ScrollReveal";
 import Antigravity from "./components/Antigravity";
@@ -233,6 +234,8 @@ export default function App() {
       <div className="relative z-10">
         {/* Hero Section */}
         <Hero />
+
+        <SectionDivider />
 
         {/* About Section */}
         <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">

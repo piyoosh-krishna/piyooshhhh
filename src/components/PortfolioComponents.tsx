@@ -9,6 +9,48 @@ import { Github, Linkedin, Mail, ExternalLink, Binary, Cpu, Database, Layout, Do
 import { RESUME_DATA } from "../constants";
 import TextType from "./TextType";
 
+export function SectionDivider() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const width = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+  const glowScale = useTransform(scrollYProgress, [0, 0.5], [0.5, 1.5]);
+
+  return (
+    <div ref={ref} className="h-64 md:h-96 w-full relative flex items-center justify-center overflow-hidden pointer-events-none">
+      <motion.div 
+        style={{ width, opacity }}
+        className="absolute h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent z-10"
+      />
+      
+      <motion.div 
+        style={{ scaleX: width, opacity, scale: glowScale }}
+        className="absolute h-32 w-full bg-brand-accent/5 blur-[80px] rounded-full"
+      />
+      
+      <div className="flex gap-24 md:gap-48 items-center justify-center relative z-20">
+        {[1, 2, 3].map((i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.2 }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-px h-24 bg-gradient-to-b from-transparent via-brand-accent/50 to-transparent" />
+            <span className="font-mono text-[8px] text-brand-accent mt-4 tracking-[0.5em] rotate-90 uppercase">
+              Data_Stream_0{i}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function SectionHeader({ title, subtitle, number }: { title: string, subtitle?: string, number: string }) {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
