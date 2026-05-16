@@ -127,7 +127,7 @@ export function Hero() {
             <div className="space-y-4 md:space-y-6 flex-1">
 
 
-              <div className="flex flex-col sm:flex-row gap-6 sm:items-center">
+              <div className="flex flex-row-reverse items-center justify-between gap-4 sm:flex-row sm:justify-start sm:gap-6">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -135,7 +135,7 @@ export function Hero() {
                   className="relative group shrink-0"
                 >
                   {/* 3D Pop-out Image Container */}
-                  <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
                     {/* Circle Background & Glow */}
                     <div className="absolute inset-0 bg-brand-accent/10 rounded-full blur-2xl opacity-20 group-hover:opacity-50 transition-opacity duration-500" />
 
@@ -166,13 +166,13 @@ export function Hero() {
                   </div>
                 </motion.div>
 
-                <div className="space-y-1">
+                <div className="space-y-1 text-left">
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     style={{ x: nameX, y: nameY }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-main)] via-[var(--accent)] to-[var(--secondary)] animate-gradient"
+                    className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tighter uppercase pointer-events-auto bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-main)] via-[var(--accent)] to-[var(--secondary)] animate-gradient"
                   >
                     Piyoosh <br />
                     Krishna M
