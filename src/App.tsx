@@ -46,11 +46,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
+    // Initial mount check
   }, []);
 
   return (
