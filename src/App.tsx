@@ -243,7 +243,6 @@ export default function App() {
           />
           <div className="grid md:grid-cols-2 gap-24 items-start">
             <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
-              <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent/20" />
               <ScrollReveal
                 baseOpacity={0}
                 enableBlur={true}
