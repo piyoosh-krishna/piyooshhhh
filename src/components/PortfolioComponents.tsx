@@ -16,32 +16,30 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
     offset: ["start end", "end start"]
   });
 
+  const skew = useTransform(scrollYProgress, [0, 1], [0, 10]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <div ref={containerRef} className="mb-12 md:mb-32 overflow-hidden">
       <div className="flex flex-col gap-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          style={{ opacity }}
           className="flex items-center gap-4"
         >
           <span className="font-mono text-brand-accent text-xs tracking-[0.4em] mb-2">{number} // SECTION</span>
         </motion.div>
-
+        
         <div className="relative group">
           <motion.h2
-            initial={{ opacity: 0, x: -100, rotate: -2 }}
-            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ x, skewX: skew, opacity }}
             className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none"
           >
             {title}
           </motion.h2>
           <motion.div
-            initial={{ width: 0, opacity: 0 }}
-            whileInView={{ width: "100%", opacity: 1 }}
+            initial={{ width: 0 }}
+            whileInView={{ width: "100%" }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 1.5, ease: "circOut" }}
             className="h-[2px] bg-brand-accent mt-4 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
@@ -50,10 +48,7 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
 
         {subtitle && (
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.5 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            style={{ opacity }}
             className="text-sm md:text-xl font-light max-w-2xl mt-4 text-[var(--text-dim)]"
           >
             {subtitle}
@@ -103,7 +98,7 @@ export function Hero() {
 
       {/* Background massive stroke text */}
       <motion.div
-        style={{ y: bgY }}
+        style={{ y: bgY, x: useTransform(scrollYProgress, [0, 1], [0, -200]) }}
         className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0"
       >
         <h1 className="text-[25vw] sm:text-[20vw] font-display font-bold leading-[0.8] tracking-tighter select-none text-center" style={{ WebkitTextStroke: "2px var(--text-main)", color: "transparent" }}>
