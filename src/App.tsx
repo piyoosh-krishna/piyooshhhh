@@ -255,9 +255,8 @@ export default function App() {
             <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
               <ScrollReveal
                 baseOpacity={0}
-                enableBlur={true}
-                baseRotation={2}
-                blurStrength={10}
+                enableBlur={false}
+                baseRotation={0}
                 textClassName="text-xl md:text-3xl font-light leading-relaxed text-[var(--text-main)]"
               >
                 {RESUME_DATA.summary}
