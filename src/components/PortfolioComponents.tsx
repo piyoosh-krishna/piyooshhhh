@@ -146,7 +146,7 @@ export function Hero() {
                       <motion.img
                         src="/hero.png"
                         alt="Piyoosh Krishna M"
-                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700"
+                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-5 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 group-active:grayscale-0 group-active:scale-[1.45] group-active:translate-y-2 transition-all duration-700"
                       />
                     </div>
 
@@ -155,7 +155,7 @@ export function Hero() {
                       <motion.img
                         src="/hero.png"
                         alt=""
-                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700 opacity-0 group-hover:opacity-100"
+                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-5 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 group-active:grayscale-0 group-active:scale-[1.45] group-active:translate-y-2 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-700"
                         style={{
                           maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)',
                           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)'
