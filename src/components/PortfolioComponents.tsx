@@ -161,9 +161,10 @@ export function Hero() {
   const rotateX = useSpring(useTransform(mouseY, [-1, 1], [10, -10]), { stiffness: 150, damping: 20 });
   const rotateY = useSpring(useTransform(mouseX, [-1, 1], [-10, 10]), { stiffness: 150, damping: 20 });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.9]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
   const nameX = useSpring(useTransform(mouseX, [-1, 1], [-20, 20]), { stiffness: 100, damping: 30 });
   const nameY = useSpring(useTransform(mouseY, [-1, 1], [-10, 10]), { stiffness: 100, damping: 30 });
@@ -187,7 +188,7 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        style={{ y, opacity, rotateX, rotateY }}
+        style={{ y, opacity, scale, rotateX, rotateY }}
         className="w-full max-w-6xl z-30 relative pt-16 md:pt-0 transform-style-3d"
       >
         <div 

@@ -236,12 +236,21 @@ export default function App() {
         <Hero />
 
         {/* About Section */}
-        <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">
-          <SectionHeader
-            number="01"
-            title="About Me"
-            subtitle="I build efficient, scalable AI and DevOps solutions."
-          />
+        <section id="about" className="relative py-32 md:py-64 px-6 md:px-12 w-full overflow-hidden">
+          {/* Digital Fog/Mask Reveal */}
+          <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-brand-bg to-transparent z-20 pointer-events-none" />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: "-100px" }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <SectionHeader
+              number="01"
+              title="About Me"
+              subtitle="I build efficient, scalable AI and DevOps solutions."
+            />
           <div className="grid md:grid-cols-2 gap-24 items-start">
             <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
               <ScrollReveal
@@ -308,6 +317,7 @@ export default function App() {
             <SkillCategory title="Web Dev" skills={RESUME_DATA.skills.fundamentals} icon={Binary} />
             <SkillCategory title="DevOps & Tools" skills={RESUME_DATA.skills.tools} icon={Binary} />
           </div>
+          </motion.div>
         </section>
 
         {/* Certifications Section */}
