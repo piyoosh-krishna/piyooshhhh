@@ -263,7 +263,6 @@ export default function App() {
                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 className="glass p-12 relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-2 h-full bg-brand-accent/20" />
                 <p className="text-[10px] font-mono text-brand-accent uppercase tracking-widest mb-10">Education</p>
                 {RESUME_DATA.education.map((edu, i) => (
                   <div key={i}>
@@ -335,9 +334,9 @@ export default function App() {
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
                   />
                 </div>
-                <div className="p-6 bg-brand-surface/90 border-t border-white/5 absolute bottom-0 left-0 w-full backdrop-blur-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="w-8 h-[2px] bg-brand-accent mb-3 group-hover:w-full transition-all duration-500" />
-                  <p className="text-xs font-mono uppercase tracking-widest text-[var(--text-main)] line-clamp-2 h-10">
+                <div className="p-5 bg-brand-surface/95 border-t border-white/5 absolute bottom-0 left-0 w-full backdrop-blur-xl">
+                  <div className="w-12 h-[2px] bg-brand-accent mb-4" />
+                  <p className="text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-main)] leading-relaxed">
                     {cert.title}
                   </p>
                 </div>
