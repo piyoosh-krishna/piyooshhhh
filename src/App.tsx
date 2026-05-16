@@ -14,7 +14,7 @@ import {
   ExperienceSection,
   SkillCategory,
   SectionDivider,
-  GlassPortal
+  TrendyMarquee
 } from "./components/PortfolioComponents";
 import ScrollReveal from "./components/ScrollReveal";
 import Antigravity from "./components/Antigravity";
@@ -236,7 +236,7 @@ export default function App() {
         {/* Hero Section */}
         <Hero />
 
-        <GlassPortal />
+        <TrendyMarquee />
 
         {/* About Section */}
         <section id="about" className="relative py-32 md:py-64 px-6 md:px-12 w-full overflow-hidden">

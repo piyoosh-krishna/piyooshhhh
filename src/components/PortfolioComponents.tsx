@@ -476,56 +476,52 @@ export function ExperienceSection() {
   );
 }
 
-export function GlassPortal() {
+export function TrendyMarquee() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 1]);
+  const xLeft = useTransform(scrollYProgress, [0, 1], [-1000, 1000]);
+  const xRight = useTransform(scrollYProgress, [0, 1], [1000, -1000]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
-  const hexSize = useTransform(scrollYProgress, [0, 0.5, 1], [0, 100, 200]);
+
+  const marqueeText = "AI ENGINEER • DEVOPS ARCHITECT • DATA SCIENTIST • ";
 
   return (
-    <div ref={ref} className="h-[80vh] w-full relative flex items-center justify-center overflow-hidden pointer-events-none">
-      {/* The Aperture / Hexagon */}
+    <div ref={ref} className="h-[40vh] md:h-[60vh] w-full relative flex flex-col justify-center overflow-hidden pointer-events-none select-none">
       <motion.div 
-        style={{ 
-          opacity, 
-          scale,
-          rotate,
-          clipPath: `polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)`
-        }}
-        className="w-64 h-64 md:w-96 md:h-96 bg-brand-accent/5 border border-brand-accent/30 flex items-center justify-center relative shadow-[0_0_100px_rgba(59,130,246,0.1)]"
+        style={{ x: xLeft, opacity }}
+        className="whitespace-nowrap flex gap-12"
       >
-        {/* Inner Glass Layer */}
-        <div className="absolute inset-0 backdrop-blur-3xl bg-brand-accent/5" />
-        
-        {/* Rotating Data Rings inside the Portal */}
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-8 border border-dashed border-brand-accent/20 rounded-full" 
-        />
-        <motion.div 
-          animate={{ rotate: -360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-16 border border-brand-accent/10 rounded-full" 
-        />
-
-        <div className="relative z-10 flex flex-col items-center gap-2">
-          <Binary className="text-brand-accent animate-pulse" size={32} />
-          <span className="font-mono text-[10px] text-brand-accent uppercase tracking-[0.5em]">Initializing_Reveal</span>
-        </div>
+        {[...Array(3)].map((_, i) => (
+          <span key={i} className="text-8xl md:text-[15rem] font-display font-black uppercase text-transparent stroke-white/5 stroke-2 md:stroke-[3px]">
+            {marqueeText}
+          </span>
+        ))}
+      </motion.div>
+      
+      <motion.div 
+        style={{ x: xRight, opacity }}
+        className="whitespace-nowrap flex gap-12 -mt-12 md:-mt-32"
+      >
+        {[...Array(3)].map((_, i) => (
+          <span key={i} className="text-8xl md:text-[15rem] font-display font-black uppercase text-brand-accent/10">
+            {marqueeText}
+          </span>
+        ))}
       </motion.div>
 
-      {/* Background Glow */}
+      {/* Center Highlight */}
       <motion.div 
-        style={{ opacity: useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0, 0.3, 0]) }}
-        className="absolute w-[500px] h-[500px] bg-brand-accent/10 blur-[150px] rounded-full"
-      />
+        style={{ opacity: useTransform(scrollYProgress, [0.4, 0.5, 0.6], [0, 1, 0]) }}
+        className="absolute inset-0 flex items-center justify-center z-10"
+      >
+        <div className="px-8 py-2 bg-brand-accent text-white font-mono text-xs tracking-[0.5em] uppercase rounded-full shadow-[0_0_30px_rgba(59,130,246,0.5)]">
+          System_Sync_01
+        </div>
+      </motion.div>
     </div>
   );
 }
