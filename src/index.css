@@ -49,7 +49,7 @@
 }
 
 body {
-  background-color: #000 !important; /* Strictly Layer 1 */
+  background-color: var(--bg) !important;
   color: var(--text-main);
   font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;

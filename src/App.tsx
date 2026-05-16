@@ -18,7 +18,6 @@ import ScrollReveal from "./components/ScrollReveal";
 import Antigravity from "./components/Antigravity";
 import Loader from "./components/Loader";
 import ThemeToggle from "./components/ThemeToggle";
-import BackgroundPortal from "./components/BackgroundPortal";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -80,8 +79,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Global Antigravity Background (Rendered at Root Level) */}
-      <BackgroundPortal>
+      {/* Global Antigravity Background (Sibling Layer) */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Antigravity
           count={400}
           magnetRadius={10}
@@ -95,7 +94,7 @@ export default function App() {
           particleVariance={1}
           scrollYProgress={scrollYProgress}
         />
-      </BackgroundPortal>
+      </div>
 
 
       {/* Scroll Progress */}
@@ -194,8 +193,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Content Layer (Strictly Layer 3 & 4) */}
-      <div className="relative z-[20] isolate transform-gpu">
+      {/* Content Layer (Standard Layering) */}
+      <div className="relative z-10 isolate transform-gpu">
         {/* Hero Section */}
         <Hero />
 
