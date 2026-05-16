@@ -87,29 +87,30 @@ const AntigravityInner = ({
 
     const { viewport: v, pointer: m } = state;
 
-    const mouseDist = Math.sqrt(Math.pow(m.x - lastMousePos.current.x, 2) + Math.pow(m.y - lastMousePos.current.y, 2));
-
-    if (mouseDist > 0.001) {
-      lastMouseMoveTime.current = Date.now();
-      lastMousePos.current = { x: m.x, y: m.y };
-    }
-
-    let destX = (m.x * v.width) / 2;
-    let destY = (m.y * v.height) / 2;
-
-    const scrollVal = scrollYProgress ? scrollYProgress.get() : 0;
-    const isHeroActive = scrollVal < 0.05; // Consider Hero active if scroll is less than 5%
-
-    const isMobile = typeof window !== 'undefined' && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
+    const isMobile = typeof window !== 'undefined' && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 1024);
     
-    if (isMobile || !interactive || !isHeroActive || (autoAnimate && Date.now() - lastMouseMoveTime.current > 2000)) {
+    if (isMobile) {
+      // FULLY AUTOMATED on mobile - ignore pointer 'm' entirely
       const time = state.clock.getElapsedTime();
-      // More complex multi-sine movement for "automated" feel
-      destX = (Math.sin(time * 0.3) * 0.7 + Math.sin(time * 0.7) * 0.3) * (v.width / 3);
-      destY = (Math.cos(time * 0.4) * 0.6 + Math.sin(time * 0.8) * 0.4) * (v.height / 3);
+      destX = (Math.sin(time * 0.4) * 0.8 + Math.sin(time * 0.9) * 0.2) * (v.width / 4);
+      destY = (Math.cos(time * 0.5) * 0.7 + Math.sin(time * 1.1) * 0.3) * (v.height / 4);
+    } else {
+      // INTERACTIVE on desktop
+      const mouseDist = Math.sqrt(Math.pow(m.x - lastMousePos.current.x, 2) + Math.pow(m.y - lastMousePos.current.y, 2));
+
+      if (mouseDist > 0.001) {
+        lastMouseMoveTime.current = Date.now();
+        lastMousePos.current = { x: m.x, y: m.y };
+      }
+
+      if (!interactive || !isHeroActive || (autoAnimate && Date.now() - lastMouseMoveTime.current > 2000)) {
+        const time = state.clock.getElapsedTime();
+        destX = (Math.sin(time * 0.3) * 0.7 + Math.sin(time * 0.7) * 0.3) * (v.width / 3);
+        destY = (Math.cos(time * 0.4) * 0.6 + Math.sin(time * 0.8) * 0.4) * (v.height / 3);
+      }
     }
 
-    const smoothFactor = isMobile ? 0.02 : 0.05; // Smoother drift on mobile
+    const smoothFactor = isMobile ? 0.01 : 0.05; // Extra smooth slow drift on mobile
     virtualMouse.current.x += (destX - virtualMouse.current.x) * smoothFactor;
     virtualMouse.current.y += (destY - virtualMouse.current.y) * smoothFactor;
 
