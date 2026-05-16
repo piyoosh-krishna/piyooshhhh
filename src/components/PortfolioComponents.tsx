@@ -387,7 +387,7 @@ export function Hero() {
                   whileTap={{ scale: 0.95 }}
                   href={RESUME_DATA.links.cv}
                   download
-                  className="px-6 py-3 border border-[var(--glass-border)] text-[var(--text-main)] font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto flex items-center justify-center gap-2 hover:border-brand-accent"
+                  className="px-6 py-3 border border-brand-accent/50 text-[var(--text-main)] font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-lg transition-all pointer-events-auto flex items-center justify-center gap-2 hover:border-brand-accent shadow-[0_0_10px_rgba(59,130,246,0.1)] hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]"
                 >
                   Download CV
                   <Download size={14} />
@@ -399,9 +399,9 @@ export function Hero() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
-              className="w-full lg:w-64 flex flex-col gap-4 font-mono text-[10px] text-[var(--text-dim)] p-6 rounded-2xl border border-brand-accent/20 glass shadow-xl"
+              className="w-full lg:w-64 flex flex-col gap-3 md:gap-4 font-mono text-[10px] text-[var(--text-dim)] p-4 md:p-6 rounded-2xl border border-brand-accent/20 glass shadow-xl shrink-0"
             >
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4">
                 <div className="flex flex-col gap-1">
                   <span className="text-brand-accent/60 uppercase tracking-widest text-[8px] flex items-center gap-2">
                     <Binary size={10} /> Role
