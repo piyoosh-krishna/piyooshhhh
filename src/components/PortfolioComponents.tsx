@@ -148,7 +148,12 @@ export function Hero() {
 
   const [isPopped, setIsPopped] = useState(false);
 
-  const togglePop = () => setIsPopped(!isPopped);
+  const togglePop = () => {
+    // Only toggle on mobile screens (< 768px)
+    if (window.innerWidth < 768) {
+      setIsPopped(!isPopped);
+    }
+  };
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -211,7 +216,7 @@ export function Hero() {
                   initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative group shrink-0 cursor-pointer"
+                  className="relative group shrink-0"
                   onClick={togglePop}
                 >
                   {/* 3D Pop-out Image Container */}
@@ -228,8 +233,8 @@ export function Hero() {
                         src="/hero.png"
                         alt="Piyoosh Krishna M"
                         variants={{
-                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 16 }, // translate-y-4 is 16px
-                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8 } // translate-y-2 is 8px
+                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 16 }, // 16 matches translate-y-4 (16px)
+                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8 }      // 8 matches translate-y-2 (8px)
                         }}
                         initial="initial"
                         animate={isPopped ? "pop" : "initial"}
