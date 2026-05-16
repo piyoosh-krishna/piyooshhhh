@@ -399,7 +399,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       </div>
 
       <h3 className="text-3xl font-display font-bold mb-4 tracking-tighter uppercase">{project.title}</h3>
-      <p className="text-[var(--text-dim)] text-lg mb-8 font-light leading-relaxed">
+      <p className="text-[var(--text-dim)] text-xl mb-8 font-normal leading-relaxed">
         {project.summary}
       </p>
 
@@ -410,7 +410,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 * i }}
-            className="flex gap-4 text-sm text-[var(--text-muted)] font-light"
+            className="flex gap-4 text-lg text-[var(--text-muted)] font-normal"
           >
             <div className="h-px w-4 bg-brand-accent/50 mt-2.5" />
             <span>{h}</span>
@@ -418,7 +418,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         ))}
       </div>
 
-      <div className="flex items-center gap-4 text-[10px] font-mono tracking-widest text-brand-accent uppercase">
+      <div className="flex items-center gap-4 text-sm font-mono tracking-widest text-brand-accent uppercase">
         <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
         Live Project
       </div>
@@ -447,16 +447,16 @@ const ExperienceRow = ({ exp, i }: { exp: any, i: number }) => {
       <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 blur-3xl rounded-full" />
       <div className="md:col-span-4 lg:col-span-3 flex flex-col justify-center">
         <div>
-          <p className="font-mono text-brand-accent text-sm mb-2">{exp.period}</p>
+          <p className="font-mono text-brand-accent text-base mb-2">{exp.period}</p>
           <h3 className="text-3xl font-bold font-display uppercase tracking-tight leading-none mb-4">{exp.company}</h3>
-          <p className="text-xs text-brand-accent/60 uppercase tracking-widest">{exp.location}</p>
+          <p className="text-sm text-brand-accent/60 uppercase tracking-widest">{exp.location}</p>
         </div>
       </div>
       <div className="md:col-span-8 lg:col-span-9 border-l-0 md:border-l border-[var(--glass-border)] pl-0 md:pl-12 pt-8 md:pt-0">
         <h4 className="text-2xl font-display font-semibold mb-8 text-[var(--text-main)] underline decoration-brand-accent underline-offset-8 decoration-2">{exp.title}</h4>
         <ul className="space-y-6">
           {exp.highlights.map((h, j) => (
-            <li key={j} className="text-xl text-[var(--text-dim)] font-light leading-relaxed group hover:text-[var(--accent)] transition-colors">
+            <li key={j} className="text-2xl text-[var(--text-dim)] font-normal leading-relaxed group hover:text-[var(--accent)] transition-colors">
               {h}
             </li>
           ))}
@@ -542,10 +542,10 @@ export function SkillCategory({ title, skills, icon: Icon }: { title: string, sk
       <div className="w-12 h-12 bg-brand-accent/10 flex items-center justify-center rounded-2xl mb-8 mx-auto md:mx-0 group-hover:bg-brand-accent group-hover:text-white transition-all text-brand-accent shadow-[0_0_15px_rgba(59,130,246,0.1)]">
         <Icon size={24} />
       </div>
-      <h4 className="text-[10px] font-mono text-brand-accent uppercase tracking-[0.4em] mb-8">{title}</h4>
+      <h4 className="text-sm font-mono text-brand-accent uppercase tracking-[0.4em] mb-8">{title}</h4>
       <div className="flex flex-wrap gap-3 justify-center md:justify-start">
         {skills.map((skill, i) => (
-          <span key={i} className="px-4 py-2 bg-brand-bg border border-brand-border text-sm text-[var(--text-dim)] hover:text-[var(--text-main)] hover:border-brand-accent transition-all cursor-default rounded-xl">
+          <span key={i} className="px-6 py-3 bg-brand-bg border border-brand-border text-base font-normal text-[var(--text-dim)] hover:text-[var(--text-main)] hover:border-brand-accent transition-all cursor-default rounded-xl">
             {skill}
           </span>
         ))}
