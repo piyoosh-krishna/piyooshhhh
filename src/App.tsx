@@ -457,9 +457,8 @@ export default function App() {
             </div>
           </div>
         </div>
-        </footer>
-      </motion.div>
-    </div>
+      </footer>
+    </motion.div>
   </div>
   );
 }
