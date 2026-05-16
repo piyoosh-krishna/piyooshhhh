@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useSpring, useTransform, AnimatePresence, useMotionValueEvent } from "motion/react";
 import { Github, Linkedin, Mail, Send, Binary, Cpu, Database, Layout, X, Menu } from "lucide-react";
 import { RESUME_DATA } from "./constants";
