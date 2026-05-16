@@ -125,7 +125,11 @@ const AntigravityInner = ({
 
     const globalRotation = state.clock.getElapsedTime() * rotationSpeed;
 
-    particles.forEach((particle, i) => {
+    const len = particles.length;
+    const time = state.clock.getElapsedTime();
+    
+    for (let i = 0; i < len; i++) {
+      const particle = particles[i];
       let { t, speed, mx, my, mz, cz, randomRadiusOffset } = particle;
 
       t = particle.t += speed / 2;
@@ -138,27 +142,24 @@ const AntigravityInner = ({
       const dy = my - projectedTargetY;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      let targetPos = { x: mx, y: my, z: mz * depthFactor };
+      let tx = mx, ty = my, tz = mz * depthFactor;
 
       if (dist < magnetRadius) {
         const angle = Math.atan2(dy, dx) + globalRotation;
-
         const wave = Math.sin(t * waveSpeed + angle) * (0.5 * waveAmplitude);
         const deviation = randomRadiusOffset * (5 / (fieldStrength + 0.1));
-
         const currentRingRadius = ringRadius + wave + deviation;
 
-        targetPos.x = projectedTargetX + currentRingRadius * Math.cos(angle);
-        targetPos.y = projectedTargetY + currentRingRadius * Math.sin(angle);
-        targetPos.z = mz * depthFactor + Math.sin(t) * (1 * waveAmplitude * depthFactor);
+        tx = projectedTargetX + currentRingRadius * Math.cos(angle);
+        ty = projectedTargetY + currentRingRadius * Math.sin(angle);
+        tz = mz * depthFactor + Math.sin(t) * (waveAmplitude * depthFactor);
       }
 
-      particle.cx += (targetPos.x - particle.cx) * lerpSpeed;
-      particle.cy += (targetPos.y - particle.cy) * lerpSpeed;
-      particle.cz += (targetPos.z - particle.cz) * lerpSpeed;
+      particle.cx += (tx - particle.cx) * lerpSpeed;
+      particle.cy += (ty - particle.cy) * lerpSpeed;
+      particle.cz += (tz - particle.cz) * lerpSpeed;
 
       dummy.position.set(particle.cx, particle.cy, particle.cz);
-
       dummy.lookAt(projectedTargetX, projectedTargetY, particle.cz);
       dummy.rotateX(Math.PI / 2);
 
@@ -167,17 +168,13 @@ const AntigravityInner = ({
       );
 
       const distFromRing = Math.abs(currentDistToMouse - ringRadius);
-      let scaleFactor = 1 - distFromRing / 10;
-
-      scaleFactor = Math.max(0, Math.min(1, scaleFactor));
-
+      const scaleFactor = Math.max(0, Math.min(1, 1 - distFromRing / 10));
       const finalScale = scaleFactor * (0.8 + Math.sin(t * pulseSpeed) * 0.2 * particleVariance) * particleSize;
+      
       dummy.scale.set(finalScale, finalScale, finalScale);
-
       dummy.updateMatrix();
-
       mesh.setMatrixAt(i, dummy.matrix);
-    });
+    }
 
     mesh.instanceMatrix.needsUpdate = true;
   });
@@ -197,6 +194,14 @@ const Antigravity = (props: AntigravityProps) => {
   return (
     <Canvas
       camera={{ position: [0, 0, 20], fov: 35 }}
+      dpr={[1, 2]} // Limit DPR for performance
+      gl={{ 
+        antialias: true, 
+        powerPreference: "high-performance",
+        stencil: false,
+        depth: true
+      }}
+      performance={{ min: 0.5 }} // Allow dynamic quality scaling
       style={{
         width: '100%',
         height: '100%',
