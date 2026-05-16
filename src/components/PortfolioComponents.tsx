@@ -119,6 +119,7 @@ export function Hero() {
           className="glass p-6 md:p-10 lg:p-12 relative overflow-hidden"
         >
           {/* Cyber accents */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
           <div className="absolute -top-32 -right-32 w-96 h-96 bg-brand-accent/20 blur-[120px] rounded-full pointer-events-none" />
           <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full pointer-events-none" />
 
