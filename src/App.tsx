@@ -255,7 +255,7 @@ export default function App() {
               subtitle="I build efficient, scalable AI and DevOps solutions."
             />
           <div className="grid md:grid-cols-2 gap-24 items-start">
-            <div className="glass p-12 relative overflow-hidden text-xl md:text-3xl font-light leading-relaxed text-[var(--text-dim)]">
+            <div className="glass p-12 relative overflow-hidden text-2xl md:text-4xl font-normal leading-[1.4] tracking-wide text-[var(--text-dim)]">
               <p className="text-[var(--text-main)]">
                 {RESUME_DATA.summary}
               </p>
