@@ -235,8 +235,6 @@ export default function App() {
         {/* Hero Section */}
         <Hero />
 
-        <SectionDivider />
-
         {/* About Section */}
         <section id="about" className="py-32 md:py-64 px-6 md:px-12 w-full">
           <SectionHeader
