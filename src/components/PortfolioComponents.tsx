@@ -147,7 +147,6 @@ export function Hero() {
   });
 
   const [isPopped, setIsPopped] = useState(false);
-  const togglePop = () => setIsPopped(!isPopped);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -210,17 +209,17 @@ export function Hero() {
                   initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  onPanEnd={(_, info) => {
-                    // Trigger toggle on horizontal swipe
-                    if (Math.abs(info.offset.x) > 30 || Math.abs(info.velocity.x) > 50) {
-                      togglePop();
-                    }
+                  className="relative group shrink-0"
+                  drag="y"
+                  dragConstraints={{ top: -30, bottom: 0 }}
+                  dragElastic={0.2}
+                  onDrag={(e, info) => {
+                    if (info.offset.y < -15) setIsPopped(true);
+                    if (info.offset.y > -5) setIsPopped(false);
                   }}
-                  onClick={togglePop} // Keep tap for accessibility
-                  className="relative group shrink-0 cursor-pointer touch-none"
                 >
                   {/* 3D Pop-out Image Container */}
-                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0 touch-none">
                     {/* Circle Background & Glow */}
                     <div className="absolute inset-0 bg-brand-accent/10 rounded-full blur-2xl opacity-20 group-hover:opacity-50 transition-opacity duration-500" />
 
@@ -233,13 +232,13 @@ export function Hero() {
                         src="/hero.png"
                         alt="Piyoosh Krishna M"
                         variants={{
-                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 40 },
-                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 0 }
+                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32 },
+                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8 }
                         }}
                         initial="initial"
                         animate={isPopped ? "pop" : "initial"}
                         whileHover="pop"
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                         className="w-full h-full object-cover object-top filter contrast-125"
                       />
                     </div>
@@ -250,13 +249,13 @@ export function Hero() {
                         src="/hero.png"
                         alt=""
                         variants={{
-                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 40, opacity: 0 },
-                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 0, opacity: 1 }
+                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32, opacity: 0 },
+                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8, opacity: 1 }
                         }}
                         initial="initial"
                         animate={isPopped ? "pop" : "initial"}
                         whileHover="pop"
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                         className="w-full h-full object-cover object-top filter contrast-125"
                         style={{
                           maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)',
