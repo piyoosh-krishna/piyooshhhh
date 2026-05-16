@@ -44,7 +44,7 @@ export default function App() {
   });
 
   return (
-    <div id="app-root" className="selection:bg-brand-accent selection:text-white relative min-h-screen bg-black overflow-x-hidden">
+    <div id="app-root" className="selection:bg-brand-accent selection:text-white relative min-h-screen overflow-x-hidden">
       <ThemeToggle />
       <AnimatePresence>
         {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
