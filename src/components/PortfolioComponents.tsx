@@ -233,8 +233,8 @@ export function Hero() {
                         src="/hero.png"
                         alt="Piyoosh Krishna M"
                         variants={{
-                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 16 },
-                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 0 }
+                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32 },
+                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8 }
                         }}
                         initial="initial"
                         animate={isPopped ? "pop" : "initial"}
@@ -250,8 +250,8 @@ export function Hero() {
                         src="/hero.png"
                         alt=""
                         variants={{
-                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 16, opacity: 0 },
-                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 0, opacity: 1 }
+                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32, opacity: 0 },
+                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8, opacity: 1 }
                         }}
                         initial="initial"
                         animate={isPopped ? "pop" : "initial"}
