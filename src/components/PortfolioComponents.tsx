@@ -227,12 +227,15 @@ export function Hero() {
                       <motion.img
                         src="/hero.png"
                         alt="Piyoosh Krishna M"
-                        animate={{
-                          filter: isPopped ? 'grayscale(0%)' : undefined,
-                          scale: isPopped ? 1.45 : undefined,
-                          y: isPopped ? 0 : undefined
+                        variants={{
+                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32 },
+                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8 }
                         }}
-                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-4 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700"
+                        initial="initial"
+                        animate={isPopped ? "pop" : "initial"}
+                        whileHover="pop"
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        className="w-full h-full object-cover object-top filter contrast-125"
                       />
                     </div>
 
@@ -241,13 +244,15 @@ export function Hero() {
                       <motion.img
                         src="/hero.png"
                         alt=""
-                        animate={{
-                          filter: isPopped ? 'grayscale(0%)' : undefined,
-                          scale: isPopped ? 1.45 : undefined,
-                          y: isPopped ? 0 : undefined,
-                          opacity: isPopped ? 1 : undefined
+                        variants={{
+                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32, opacity: 0 },
+                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8, opacity: 1 }
                         }}
-                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-4 sm:translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 opacity-0 group-hover:opacity-100 transition-all duration-700"
+                        initial="initial"
+                        animate={isPopped ? "pop" : "initial"}
+                        whileHover="pop"
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        className="w-full h-full object-cover object-top filter contrast-125"
                         style={{
                           maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)',
                           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)'
