@@ -139,6 +139,72 @@ export function SectionHeader({ title, subtitle, number }: { title: string, subt
   );
 }
 
+export const VaultReveal: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
+  return (
+    <motion.div 
+      className="fixed inset-0 z-[9998] flex overflow-hidden pointer-events-none"
+      onAnimationComplete={onComplete}
+    >
+      {/* Left Door */}
+      <motion.div 
+        initial={{ x: 0 }}
+        animate={{ x: "-100%" }}
+        transition={{ duration: 1.5, ease: [0.82, 0, 0.18, 1], delay: 0.5 }}
+        className="w-1/2 h-full bg-[#050505] border-r border-brand-accent/20 relative flex items-center justify-end"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-brand-accent/5 opacity-30" />
+        {/* Door details */}
+        <div className="w-1 h-32 bg-brand-accent/30 mr-2" />
+      </motion.div>
+
+      {/* Right Door */}
+      <motion.div 
+        initial={{ x: 0 }}
+        animate={{ x: "100%" }}
+        transition={{ duration: 1.5, ease: [0.82, 0, 0.18, 1], delay: 0.5 }}
+        className="w-1/2 h-full bg-[#050505] border-l border-brand-accent/20 relative flex items-center justify-start"
+      >
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent to-brand-accent/5 opacity-30" />
+        {/* Door details */}
+        <div className="w-1 h-32 bg-brand-accent/30 ml-2" />
+      </motion.div>
+
+      {/* Central Hex Lock */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.div
+          initial={{ scale: 1.5, rotate: 0, opacity: 0 }}
+          animate={{ 
+            scale: [1.5, 1.2, 0],
+            rotate: [0, 180, 360],
+            opacity: [0, 1, 0]
+          }}
+          transition={{ 
+            duration: 1.8, 
+            ease: "easeInOut",
+            times: [0, 0.4, 1]
+          }}
+          className="relative w-48 h-48 flex items-center justify-center"
+        >
+          {/* Hexagon shape using CSS clip-path */}
+          <div 
+            className="absolute inset-0 bg-brand-bg/80 backdrop-blur-xl border-2 border-brand-accent shadow-[0_0_50px_rgba(59,130,246,0.5)]"
+            style={{ clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)" }}
+          />
+          <Cpu className="text-brand-accent animate-pulse relative z-10" size={48} />
+        </motion.div>
+      </div>
+
+      {/* Intense White Flash on Unlock */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 0.8, times: [0.3, 0.4, 1], delay: 0.2 }}
+        className="absolute inset-0 bg-white z-[10000] pointer-events-none"
+      />
+    </motion.div>
+  );
+};
+
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({

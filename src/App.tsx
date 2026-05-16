@@ -14,7 +14,8 @@ import {
   ExperienceSection,
   SkillCategory,
   SectionDivider,
-  TrendyMarquee
+  TrendyMarquee,
+  VaultReveal
 } from "./components/PortfolioComponents";
 import Antigravity from "./components/Antigravity";
 import Loader from "./components/Loader";
@@ -22,6 +23,7 @@ import ThemeToggle from "./components/ThemeToggle";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isVaultActive, setIsVaultActive] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const { scrollYProgress } = useScroll();
@@ -31,7 +33,6 @@ export default function App() {
     restDelta: 0.001
   });
 
-  
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
 
@@ -86,7 +87,24 @@ export default function App() {
       `}} />
       <ThemeToggle />
       <AnimatePresence>
-        {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+        {isLoading && (
+          <Loader 
+            key="loader" 
+            onComplete={() => {
+              setIsLoading(false);
+              setIsVaultActive(true);
+            }} 
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isVaultActive && (
+          <VaultReveal 
+            key="vault" 
+            onComplete={() => setIsVaultActive(false)} 
+          />
+        )}
       </AnimatePresence>
 
       <AnimatePresence>
