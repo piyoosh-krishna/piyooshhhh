@@ -235,6 +235,8 @@ export default function App() {
         {/* Hero Section */}
         <Hero />
 
+        <DigitalScanner />
+
         {/* About Section */}
         <section id="about" className="relative py-32 md:py-64 px-6 md:px-12 w-full overflow-hidden">
           {/* Digital Fog/Mask Reveal */}

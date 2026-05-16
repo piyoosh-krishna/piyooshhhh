@@ -476,6 +476,52 @@ export function ExperienceSection() {
   );
 }
 
+export function DigitalScanner() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const scannerY = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.4, 0.5], [0, 1, 1, 0]);
+  const glowScale = useTransform(scrollYProgress, [0, 0.25, 0.5], [0.5, 1.2, 0.8]);
+
+  return (
+    <div ref={ref} className="h-64 relative overflow-hidden pointer-events-none">
+      {/* Scanner Line */}
+      <motion.div 
+        style={{ top: scannerY, opacity }}
+        className="absolute left-0 w-full h-[2px] bg-brand-accent z-30 flex items-center justify-center"
+      >
+        {/* Central Data Core */}
+        <motion.div 
+          style={{ scale: glowScale }}
+          className="w-4 h-4 bg-brand-accent rounded-full shadow-[0_0_30px_rgba(59,130,246,1)]"
+        />
+        {/* Side Glows */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50 blur-sm" />
+        
+        {/* Binary Stream Labels */}
+        <div className="absolute left-10 -top-6 text-[8px] font-mono text-brand-accent/40 flex flex-col uppercase tracking-tighter">
+          <span>{`{ reveal_init: true }`}</span>
+          <span>{`[ data_stream_stable ]`}</span>
+        </div>
+        <div className="absolute right-10 -top-6 text-[8px] font-mono text-brand-accent/40 flex flex-col text-right uppercase tracking-tighter">
+          <span>{`01011001 01100101 01110011`}</span>
+          <span>{`port: 8080 // status: auth`}</span>
+        </div>
+      </motion.div>
+
+      {/* Decorative background grid that appears during scan */}
+      <motion.div 
+        style={{ opacity }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)]"
+      />
+    </div>
+  );
+}
+
 export function SkillCategory({ title, skills, icon: Icon }: { title: string, skills: string[], icon: any }) {
   return (
     <motion.div
