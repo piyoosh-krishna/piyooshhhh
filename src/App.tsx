@@ -13,7 +13,8 @@ import {
   ProjectCard,
   ExperienceSection,
   SkillCategory,
-  SectionDivider
+  SectionDivider,
+  DigitalScanner
 } from "./components/PortfolioComponents";
 import ScrollReveal from "./components/ScrollReveal";
 import Antigravity from "./components/Antigravity";
