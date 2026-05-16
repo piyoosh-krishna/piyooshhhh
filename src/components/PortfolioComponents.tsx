@@ -335,12 +335,15 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="flex gap-3 mt-4 pt-4 border-t border-[var(--glass-border)] justify-end text-[var(--text-main)]">
+              <div className="flex gap-3 mt-4 pt-4 border-t border-[var(--glass-border)] justify-center text-[var(--text-main)]">
                 <a href={RESUME_DATA.links.github} target="_blank" className="p-2 bg-black/5 rounded-lg hover:bg-brand-accent hover:text-white transition-all">
                   <Github size={16} />
                 </a>
                 <a href={RESUME_DATA.links.linkedin} target="_blank" className="p-2 bg-black/5 rounded-lg hover:bg-brand-accent hover:text-white transition-all">
                   <Linkedin size={16} />
+                </a>
+                <a href={`mailto:${RESUME_DATA.email}`} className="p-2 bg-black/5 rounded-lg hover:bg-brand-accent hover:text-white transition-all">
+                  <Mail size={16} />
                 </a>
               </div>
             </motion.div>
