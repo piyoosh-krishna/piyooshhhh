@@ -117,7 +117,7 @@ export function Hero() {
       >
         <div 
           className="glass-premium p-6 md:p-10 lg:p-12 relative overflow-hidden"
-          style={{ backdropFilter: 'blur(40px) saturate(200%)', WebkitBackdropFilter: 'blur(40px) saturate(200%)' }}
+          style={{ backdropFilter: 'blur(100px) saturate(180%)', WebkitBackdropFilter: 'blur(100px) saturate(180%)' }}
         >
           {/* Cyber accents */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
