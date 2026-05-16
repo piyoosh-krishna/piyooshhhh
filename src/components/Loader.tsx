@@ -16,7 +16,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [currentLog, setCurrentLog] = useState(0);
 
   useEffect(() => {
-    const duration = 2500; 
+    const duration = 4000; 
     const intervalTime = 20;
     const steps = duration / intervalTime;
     let currentStep = 0;
