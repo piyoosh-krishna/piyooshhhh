@@ -88,7 +88,7 @@ export default function App() {
           ringRadius={12}
           waveSpeed={0.4}
           waveAmplitude={1.2}
-          particleSize={1.2}
+          particleSize={1.8}
           lerpSpeed={0.06}
           color={'#3b82f6'}
           autoAnimate={true}
@@ -194,7 +194,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <main className="relative z-10 isolate transform-gpu">
+      {/* Content Layer */}
+      <div className="relative z-[50] isolate transform-gpu">
         {/* Hero Section */}
         <Hero />
 
@@ -372,7 +373,7 @@ export default function App() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
 
       <footer className="py-24 px-6 md:px-12 border-t border-[var(--glass-border)]">
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-12">

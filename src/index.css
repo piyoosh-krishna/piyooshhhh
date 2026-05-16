@@ -49,7 +49,7 @@
 }
 
 body {
-  background-color: #000; /* Fallback */
+  background-color: #000;
   color: var(--text-main);
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -68,8 +68,8 @@ body {
     var(--glass-bg-end)
   );
   /* Force hardware acceleration and prevent clipping context bugs */
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   
@@ -101,8 +101,8 @@ body {
     var(--glass-bg-start) 0%,
     var(--glass-bg-end) 100%
   );
-  backdrop-filter: blur(40px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  backdrop-filter: blur(60px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(60px) saturate(200%) !important;
   transform: translateZ(0);
   
   border: 1px solid var(--glass-border);

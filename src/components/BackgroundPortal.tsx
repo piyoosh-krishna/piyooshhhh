@@ -11,8 +11,9 @@ export default function BackgroundPortal({ children }: { children: ReactNode }) 
       id="global-background-portal"
       className="fixed inset-0 pointer-events-none" 
       style={{ 
-        zIndex: -100,
-        backgroundColor: "var(--bg)", // Move background color here
+        zIndex: 0, // Higher than body background
+        backgroundColor: "var(--bg)",
+        backgroundImage: "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)",
         transition: "background-color 0.3s ease"
       }}
     >
