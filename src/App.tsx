@@ -286,6 +286,7 @@ export default function App() {
               </motion.div>
             </div>
           </div>
+          </motion.div>
         </section>
 
         {/* Projects Section */}
@@ -317,7 +318,6 @@ export default function App() {
             <SkillCategory title="Web Dev" skills={RESUME_DATA.skills.fundamentals} icon={Binary} />
             <SkillCategory title="DevOps & Tools" skills={RESUME_DATA.skills.tools} icon={Binary} />
           </div>
-          </motion.div>
         </section>
 
         {/* Certifications Section */}
