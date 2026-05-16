@@ -80,10 +80,10 @@ export default function App() {
       </AnimatePresence>
 
       {/* DIAGNOSTIC TEST 1: Bright Red Wall behind everything */}
-      <div className="fixed inset-0 bg-red-600 z-[-10]" />
+      <div className="fixed inset-0 bg-red-600 z-[-2]" />
 
       {/* Global Antigravity Background (Sibling Layer) */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-[-1] pointer-events-none">
         <Antigravity
           count={400}
           magnetRadius={10}
