@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useSpring, useTransform, AnimatePresence, useMotionValueEvent } from "motion/react";
-import { Github, Linkedin, Mail, Send, X, Menu } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Binary, Cpu, Database, Layout, X, Menu } from "lucide-react";
 import { RESUME_DATA } from "./constants";
 import {
   Hero,
