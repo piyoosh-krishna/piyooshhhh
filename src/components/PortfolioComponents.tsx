@@ -146,10 +146,6 @@ export function Hero() {
     offset: ["start start", "end start"]
   });
 
-  const [isPopped, setIsPopped] = useState(false);
-
-  const togglePop = () => setIsPopped(!isPopped);
-
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -211,8 +207,7 @@ export function Hero() {
                   initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative group shrink-0 cursor-pointer"
-                  onClick={togglePop}
+                  className="relative group shrink-0"
                 >
                   {/* 3D Pop-out Image Container */}
                   <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 shrink-0">
@@ -227,15 +222,7 @@ export function Hero() {
                       <motion.img
                         src="/hero.png"
                         alt="Piyoosh Krishna M"
-                        variants={{
-                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32 },
-                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8 }
-                        }}
-                        initial="initial"
-                        animate={isPopped ? "pop" : "initial"}
-                        whileHover="pop"
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                        className="w-full h-full object-cover object-top filter contrast-125"
+                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700"
                       />
                     </div>
 
@@ -244,15 +231,7 @@ export function Hero() {
                       <motion.img
                         src="/hero.png"
                         alt=""
-                        variants={{
-                          initial: { filter: 'grayscale(100%)', scale: 1.35, y: 32, opacity: 0 },
-                          pop: { filter: 'grayscale(0%)', scale: 1.45, y: 8, opacity: 1 }
-                        }}
-                        initial="initial"
-                        animate={isPopped ? "pop" : "initial"}
-                        whileHover="pop"
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                        className="w-full h-full object-cover object-top filter contrast-125"
+                        className="w-full h-full object-cover scale-[1.35] object-top translate-y-8 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-[1.45] group-hover:translate-y-2 transition-all duration-700 opacity-0 group-hover:opacity-100"
                         style={{
                           maskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)',
                           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 50%)'
