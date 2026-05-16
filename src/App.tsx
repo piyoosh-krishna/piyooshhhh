@@ -156,7 +156,7 @@ export default function App() {
         />
       </div>
 
-      <div className="relative" style={{ zIndex: 1 }}>
+
         <motion.div
           className="fixed top-0 left-0 right-0 h-1 bg-brand-accent origin-left z-[200]"
           style={{ scaleX: scrollYProgress }}
