@@ -453,7 +453,7 @@ export function SkillCategory({ title, skills, icon: Icon }: { title: string, sk
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="group glass p-8 transition-all hover:border-brand-accent/20 text-center md:text-left"
     >
-      <div className="w-12 h-12 bg-black/5 flex items-center justify-center rounded-2xl mb-8 mx-auto md:mx-0 group-hover:bg-brand-accent group-hover:text-white transition-all text-[var(--text-muted)]">
+      <div className="w-12 h-12 bg-brand-accent/10 flex items-center justify-center rounded-2xl mb-8 mx-auto md:mx-0 group-hover:bg-brand-accent group-hover:text-white transition-all text-brand-accent shadow-[0_0_15px_rgba(59,130,246,0.1)]">
         <Icon size={24} />
       </div>
       <h4 className="text-[10px] font-mono text-brand-accent uppercase tracking-[0.4em] mb-8">{title}</h4>
