@@ -286,8 +286,12 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     <motion.div
       ref={cardRef}
       style={{ y }}
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.2}
       initial={{ opacity: 0, y: 100, scale: 0.9, rotateX: 20 }}
       whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+      whileTap={{ scale: 0.98, rotateX: 5 }}
       viewport={{ margin: "-50px" }}
       transition={{ 
         duration: 1.2, 
@@ -301,6 +305,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       <div className="flex justify-between items-start mb-8">
         <motion.div
           whileHover={{ rotate: 360, scale: 1.2 }}
+          whileTap={{ rotate: 360, scale: 1.2 }}
           transition={{ duration: 1 }}
           className="p-3 bg-brand-accent/10 border border-brand-accent/20 rounded-2xl text-brand-accent"
         >
@@ -396,8 +401,12 @@ export function ExperienceSection() {
 export function SkillCategory({ title, skills, icon: Icon }: { title: string, skills: string[], icon: any }) {
   return (
     <motion.div
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.15}
       initial={{ opacity: 0, y: 50, rotateY: 15 }}
       whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+      whileTap={{ scale: 0.95 }}
       viewport={{ margin: "-50px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="group glass p-8 transition-all hover:border-brand-accent/20 text-center md:text-left"
