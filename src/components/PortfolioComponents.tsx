@@ -115,7 +115,7 @@ export function Hero() {
         style={{ y, opacity, rotateX, rotateY }}
         className="w-full max-w-6xl z-30 relative transform-gpu pt-16 md:pt-0"
       >
-        <div className="glass p-6 md:p-10 lg:p-12 rounded-[2rem] border border-white/10 relative overflow-hidden bg-gradient-to-br from-white/[0.05] to-transparent shadow-[0_0_50px_rgba(59,130,246,0.15)]">
+        <div className="glass p-6 md:p-10 lg:p-12 relative overflow-hidden">
           {/* Cyber accents */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
           <div className="absolute -top-32 -right-32 w-96 h-96 bg-brand-accent/20 blur-[120px] rounded-full pointer-events-none" />
@@ -230,7 +230,7 @@ export function Hero() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
-              className="w-full lg:w-64 flex flex-col gap-4 font-mono text-[10px] text-[var(--text-dim)] p-6 rounded-2xl border border-brand-accent/20 bg-brand-accent/5 backdrop-blur-md shadow-2xl"
+              className="w-full lg:w-64 flex flex-col gap-4 font-mono text-[10px] text-[var(--text-dim)] p-6 rounded-2xl border border-brand-accent/20 bg-brand-surface shadow-xl"
             >
               <div className="space-y-4">
                 <div className="flex flex-col gap-1">
@@ -406,7 +406,7 @@ export function SkillCategory({ title, skills, icon: Icon }: { title: string, sk
       <h4 className="text-[10px] font-mono text-brand-accent uppercase tracking-[0.4em] mb-8">{title}</h4>
       <div className="flex flex-wrap gap-3 justify-center md:justify-start">
         {skills.map((skill, i) => (
-          <span key={i} className="px-4 py-2 bg-white/[0.03] border border-white/5 text-sm text-[var(--text-dim)] hover:text-[var(--text-main)] hover:border-brand-accent transition-all cursor-default rounded-xl">
+          <span key={i} className="px-4 py-2 bg-brand-bg border border-brand-border text-sm text-[var(--text-dim)] hover:text-[var(--text-main)] hover:border-brand-accent transition-all cursor-default rounded-xl">
             {skill}
           </span>
         ))}

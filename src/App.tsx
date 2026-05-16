@@ -57,7 +57,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setPreviewImage(null)}
-            className="fixed inset-0 z-[1000] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-pointer"
+            className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center p-4 md:p-12 cursor-pointer"
           >
             <button 
               onClick={(e) => { e.stopPropagation(); setPreviewImage(null); }}
@@ -166,7 +166,7 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[250] bg-brand-bg/95 backdrop-blur-2xl flex flex-col justify-center px-12 gap-12"
+            className="fixed inset-0 z-[250] bg-brand-bg flex flex-col justify-center px-12 gap-12"
           >
             {[
               { name: "About", id: "about" },

@@ -35,7 +35,7 @@ export default function ThemeToggle() {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.1, boxShadow: "0 0 30px var(--glow)" }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-10 right-10 z-[500] p-5 glass rounded-full flex items-center justify-center border-brand-accent/20 text-brand-accent shadow-2xl"
+      className="fixed bottom-10 right-10 z-[500] p-5 glass rounded-full flex items-center justify-center text-brand-accent"
       title={isLight ? "Switch to Dark Mode" : "Switch to Light Mode"}
     >
       <AnimatePresence mode="wait" initial={false}>
