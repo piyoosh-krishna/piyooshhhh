@@ -87,6 +87,9 @@ const AntigravityInner = ({
 
     const { viewport: v, pointer: m } = state;
 
+    let destX = (m.x * v.width) / 2;
+    let destY = (m.y * v.height) / 2;
+
     const isMobile = typeof window !== 'undefined' && (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 1024);
     
     if (isMobile) {
