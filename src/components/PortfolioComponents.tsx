@@ -16,37 +16,70 @@ export function SectionDivider() {
     offset: ["start end", "end start"]
   });
 
-  const width = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
-  const glowScale = useTransform(scrollYProgress, [0, 0.5], [0.5, 1.5]);
+  const rotateX = useTransform(scrollYProgress, [0, 1], [45, -45]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8]);
+  const coreRotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
 
   return (
-    <div ref={ref} className="h-64 md:h-96 w-full relative flex items-center justify-center overflow-hidden pointer-events-none">
+    <div ref={ref} className="h-[60vh] md:h-[80vh] w-full relative flex items-center justify-center overflow-hidden perspective-[1000px] pointer-events-none">
+      {/* 3D Grid Floor/Ceiling */}
       <motion.div 
-        style={{ width, opacity }}
-        className="absolute h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent z-10"
-      />
-      
-      <motion.div 
-        style={{ scaleX: width, opacity, scale: glowScale }}
-        className="absolute h-32 w-full bg-brand-accent/5 blur-[80px] rounded-full"
-      />
-      
-      <div className="flex gap-24 md:gap-48 items-center justify-center relative z-20">
-        {[1, 2, 3].map((i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.2 }}
-            className="flex flex-col items-center"
-          >
-            <div className="w-px h-24 bg-gradient-to-b from-transparent via-brand-accent/50 to-transparent" />
-            <span className="font-mono text-[8px] text-brand-accent mt-4 tracking-[0.5em] rotate-90 uppercase">
-              Data_Stream_0{i}
-            </span>
-          </motion.div>
-        ))}
+        style={{ opacity, rotateX, scale }}
+        className="absolute inset-0 flex flex-col justify-between py-20"
+      >
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-accent/30 to-transparent shadow-[0_0_20px_rgba(59,130,246,0.3)]" />
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-accent/30 to-transparent shadow-[0_0_20px_rgba(59,130,246,0.3)]" />
+      </motion.div>
+
+      {/* Central Core Portal */}
+      <div className="relative flex items-center justify-center">
+        <motion.div
+          style={{ rotate: coreRotate, opacity, scale }}
+          className="w-64 h-64 md:w-96 md:h-96 border border-brand-accent/20 rounded-full relative"
+        >
+          {/* Rotating Rings */}
+          <div className="absolute inset-4 border border-dashed border-brand-accent/10 rounded-full animate-[spin_10s_linear_infinite]" />
+          <div className="absolute inset-12 border-2 border-t-brand-accent/40 border-r-transparent border-b-transparent border-l-transparent rounded-full animate-[spin_3s_linear_infinite]" />
+          
+          {/* Data Readouts */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 font-mono text-[10px] text-brand-accent uppercase tracking-[0.5em]">
+            System_Breach_Init
+          </div>
+        </motion.div>
+
+        {/* Inner Glow */}
+        <motion.div 
+          style={{ opacity, scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 2, 0.5]) }}
+          className="absolute w-32 h-32 bg-brand-accent/20 blur-[60px] rounded-full"
+        />
+        
+        {/* Binary Stream */}
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              style={{ 
+                x: (i - 2) * 60,
+                y: useTransform(scrollYProgress, [0, 1], [100, -100]),
+                opacity: useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0, 0.2, 0])
+              }}
+              className="font-mono text-[8px] text-brand-accent flex flex-col gap-2"
+            >
+              {[1,0,1,1,0,1,0].map((b, j) => <span key={j}>{b}</span>)}
+            </motion.div>
+          ))}
+        </div>
       </div>
+
+      {/* Floating Particles/Nodes */}
+      <motion.div 
+        style={{ opacity, y: useTransform(scrollYProgress, [0, 1], [50, -50]) }}
+        className="absolute inset-0 z-0"
+      >
+        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-brand-accent rounded-full animate-pulse" />
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-brand-accent rounded-full animate-pulse delay-500" />
+      </motion.div>
     </div>
   );
 }
