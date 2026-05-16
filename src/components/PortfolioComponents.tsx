@@ -112,8 +112,8 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        style={{ y, opacity }}
-        className="w-full max-w-6xl z-30 relative pt-16 md:pt-0"
+        style={{ y, opacity, rotateX, rotateY }}
+        className="w-full max-w-6xl z-30 relative pt-16 md:pt-0 transform-style-3d"
       >
         <div 
           className="glass p-6 md:p-10 lg:p-12 relative overflow-hidden"
