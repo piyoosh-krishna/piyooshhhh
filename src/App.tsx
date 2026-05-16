@@ -194,8 +194,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Content Layer */}
-      <div className="relative z-[50] isolate transform-gpu">
+      {/* Content Layer (Strictly Layer 3 & 4) */}
+      <div className="relative z-[20] isolate transform-gpu">
         {/* Hero Section */}
         <Hero />
 

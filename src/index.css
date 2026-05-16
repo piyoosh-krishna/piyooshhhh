@@ -49,7 +49,7 @@
 }
 
 body {
-  background-color: #000;
+  background-color: #000 !important; /* Strictly Layer 1 */
   color: var(--text-main);
   font-family: var(--font-sans);
   overflow-x: hidden;
