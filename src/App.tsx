@@ -52,7 +52,7 @@ export default function App() {
   }, []);
 
   return (
-    <div id="app-root" className="selection:bg-brand-accent selection:text-white relative min-h-screen bg-black overflow-x-hidden">
+    <div id="app-root" className="selection:bg-brand-accent selection:text-white relative min-h-screen overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
         .glass {
           background: rgba(255, 255, 255, 0.08) !important;
@@ -63,7 +63,7 @@ export default function App() {
         }
         
         canvas {
-          z-index: -1 !important;
+          z-index: 0 !important;
           pointer-events: none !important;
           position: fixed !important;
           top: 0 !important;
