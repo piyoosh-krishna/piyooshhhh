@@ -3,16 +3,16 @@ import { Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function ThemeToggle() {
-  const [isLight, setIsLight] = useState(true);
+  const [isLight, setIsLight] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setIsLight(false);
-      document.documentElement.classList.remove("light");
-    } else {
+    if (savedTheme === "light") {
       setIsLight(true);
       document.documentElement.classList.add("light");
+    } else {
+      setIsLight(false);
+      document.documentElement.classList.remove("light");
     }
   }, []);
 

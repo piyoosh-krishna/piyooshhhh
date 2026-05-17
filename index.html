@@ -8,7 +8,7 @@
     <script>
       (function() {
         const savedTheme = localStorage.getItem("theme");
-        if (savedTheme !== "dark") {
+        if (savedTheme === "light") {
           document.documentElement.classList.add("light");
         }
       })();
